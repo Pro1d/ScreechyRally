@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/MapInfo.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 5
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 1364.0
+margin_bottom = 766.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1362.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 71.0
+margin_bottom = 20.0
+text = "Generate"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 75.0
+margin_right = 149.0
+margin_bottom = 20.0
+text = "Clear logs"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 153.0
+margin_right = 204.0
+margin_bottom = 20.0
+text = "Dump"
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 208.0
+margin_right = 250.0
+margin_bottom = 20.0
+text = "Load"
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 295.0
+margin_bottom = 20.0
+text = "Save"
+items = [ "Will erase file. Confirm?", null, 0, false, false, 0, 0, null, "", false ]
+
+[node name="MenuButton2" type="MenuButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 299.0
+margin_right = 415.0
+margin_bottom = 20.0
+focus_mode = 2
+text = "Clear Progresion"
+items = [ "Confirm?", null, 0, false, false, 0, 0, null, "", false ]
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 419.0
+margin_right = 459.0
+margin_bottom = 20.0
+text = "Quit"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 1362.0
+margin_bottom = 761.0
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1355.0
+margin_bottom = 730.0
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+margin_right = 1348.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_right = 1348.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+text = "Map Info Tools...
+"
+valign = 2
+autowrap = true

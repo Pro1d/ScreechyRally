@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/sounds/SelectAnOption.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/sounds/SelectAnOption2.wav" type="AudioStream" id=2]
+
+[node name="SoundUI" type="Node"]
+
+[node name="UIPressedPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
+bus = "UI"
+
+[node name="UIHoveredPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+bus = "UI"

@@ -1,0 +1,213 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://resources/in_game.theme" type="Theme" id=1]
+[ext_resource path="res://scripts/ScoreTable.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/UI/medal_flat_on.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/UI/medal_flat_off.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[node name="ScoreTable" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+row_mask = 31
+
+[node name="DataLabelTemplate" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 588.0
+margin_top = 254.0
+margin_right = 778.0
+margin_bottom = 513.0
+custom_constants/separation = 5
+
+[node name="Normal" type="Label" parent="DataLabelTemplate"]
+margin_right = 190.0
+margin_bottom = 61.0
+text = "0:25.2"
+
+[node name="LocalBest" type="Label" parent="DataLabelTemplate"]
+modulate = Color( 0.74902, 0.870588, 1, 1 )
+margin_top = 66.0
+margin_right = 190.0
+margin_bottom = 127.0
+text = "0:25.1"
+
+[node name="GlobalBest" type="Label" parent="DataLabelTemplate"]
+modulate = Color( 0.839216, 0.643137, 1, 1 )
+margin_top = 132.0
+margin_right = 190.0
+margin_bottom = 193.0
+text = "0:25.3"
+
+[node name="MedalContainer" type="HBoxContainer" parent="DataLabelTemplate"]
+margin_top = 198.0
+margin_right = 190.0
+margin_bottom = 259.0
+
+[node name="BronzeCheckBox" type="CheckBox" parent="DataLabelTemplate/MedalContainer"]
+modulate = Color( 0.662745, 0.517647, 0.290196, 1 )
+margin_right = 40.0
+margin_bottom = 61.0
+custom_icons/checked_disabled = ExtResource( 3 )
+custom_icons/unchecked_disabled = ExtResource( 4 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/hover_pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+disabled = true
+pressed = true
+
+[node name="SilverCheckBox" type="CheckBox" parent="DataLabelTemplate/MedalContainer"]
+modulate = Color( 0.729412, 0.733333, 0.741176, 1 )
+margin_left = 50.0
+margin_right = 90.0
+margin_bottom = 61.0
+custom_icons/checked_disabled = ExtResource( 3 )
+custom_icons/unchecked_disabled = ExtResource( 4 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/hover_pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+disabled = true
+pressed = true
+
+[node name="GoldCheckBox" type="CheckBox" parent="DataLabelTemplate/MedalContainer"]
+modulate = Color( 1, 0.878431, 0.490196, 1 )
+margin_left = 100.0
+margin_right = 140.0
+margin_bottom = 61.0
+custom_icons/checked_disabled = ExtResource( 3 )
+custom_icons/unchecked_disabled = ExtResource( 4 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/hover_pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+disabled = true
+pressed = true
+
+[node name="AuthorCheckBox" type="CheckBox" parent="DataLabelTemplate/MedalContainer"]
+modulate = Color( 0.286275, 0.803922, 0.941176, 1 )
+margin_left = 150.0
+margin_right = 190.0
+margin_bottom = 61.0
+custom_icons/checked_disabled = ExtResource( 3 )
+custom_icons/unchecked_disabled = ExtResource( 4 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/hover_pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+disabled = true
+pressed = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 443.0
+margin_top = 188.0
+margin_right = 922.0
+margin_bottom = 579.0
+columns = 2
+
+[node name="RowNameEmpty" type="Control" parent="GridContainer"]
+margin_right = 224.0
+margin_bottom = 61.0
+
+[node name="DataNameLabel" type="Label" parent="GridContainer"]
+margin_left = 249.0
+margin_right = 479.0
+margin_bottom = 61.0
+text = "PlayerOne"
+
+[node name="RowLapsLabel" type="Label" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_top = 66.0
+margin_right = 224.0
+margin_bottom = 127.0
+size_flags_vertical = 1
+text = "Laps"
+align = 2
+
+[node name="DataLapsVBox" type="VBoxContainer" parent="GridContainer"]
+margin_left = 249.0
+margin_top = 66.0
+margin_right = 479.0
+margin_bottom = 127.0
+custom_constants/separation = 0
+
+[node name="RowBestLapLabel" type="Label" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_top = 132.0
+margin_right = 224.0
+margin_bottom = 193.0
+text = "Best lap"
+align = 2
+
+[node name="DataBestLapBox" type="VBoxContainer" parent="GridContainer"]
+margin_left = 249.0
+margin_top = 132.0
+margin_right = 479.0
+margin_bottom = 193.0
+custom_constants/separation = 5
+
+[node name="RowRaceTimeLabel" type="Label" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_top = 198.0
+margin_right = 224.0
+margin_bottom = 259.0
+text = "Race Time"
+align = 2
+
+[node name="DataRaceTimeBox" type="VBoxContainer" parent="GridContainer"]
+margin_left = 249.0
+margin_top = 198.0
+margin_right = 479.0
+margin_bottom = 259.0
+custom_constants/separation = 5
+
+[node name="RowRankLabel" type="Label" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_top = 264.0
+margin_right = 224.0
+margin_bottom = 325.0
+text = "Rank"
+align = 2
+
+[node name="DataRankLabel" type="Label" parent="GridContainer"]
+margin_left = 249.0
+margin_top = 264.0
+margin_right = 479.0
+margin_bottom = 325.0
+text = "1st"
+
+[node name="RowMedalsLabel" type="Label" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_top = 330.0
+margin_right = 224.0
+margin_bottom = 391.0
+text = "Medals"
+align = 2
+
+[node name="DataMedalsBox" type="HBoxContainer" parent="GridContainer"]
+modulate = Color( 1, 1, 1, 0.752941 )
+margin_left = 249.0
+margin_top = 330.0
+margin_right = 479.0
+margin_bottom = 391.0

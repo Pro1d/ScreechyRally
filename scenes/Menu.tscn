@@ -1,0 +1,279 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/fonts/Catenary-Stamp.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/road.theme" type="Theme" id=2]
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/asphalt.png" type="Texture" id=4]
+[ext_resource path="res://scenes/CarDrift.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/musics/Countdown.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/images/UI/medal_on.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/UI/medal_off.png" type="Texture" id=8]
+[ext_resource path="res://scenes/ScreenFadeInOut.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ButtonGroup" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 110
+font_data = ExtResource( 1 )
+
+[sub_resource type="LineShape2D" id=4]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -4.5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade_in"
+length = 0.5
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -4.5, -40.0 ]
+}
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="MapSelection" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 50.0
+margin_right = -100.0
+margin_bottom = -50.0
+rect_min_size = Vector2( 600, 400 )
+
+[node name="CenterAutoLeft" type="Control" parent="MapSelection"]
+margin_right = 282.0
+margin_bottom = 668.0
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MapSelection"]
+margin_left = 286.0
+margin_right = 664.0
+margin_bottom = 668.0
+scroll_horizontal_enabled = false
+
+[node name="CenterContainer" type="CenterContainer" parent="MapSelection/ScrollContainer"]
+margin_right = 378.0
+margin_bottom = 668.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MapSelection/ScrollContainer/CenterContainer"]
+margin_top = 297.0
+margin_right = 378.0
+margin_bottom = 370.0
+columns = 5
+
+[node name="CheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/GridContainer"]
+margin_right = 162.0
+margin_bottom = 73.0
+group = SubResource( 6 )
+text = "Map1"
+
+[node name="BronzeCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/GridContainer"]
+modulate = Color( 0.662745, 0.517647, 0.290196, 1 )
+margin_left = 166.0
+margin_right = 216.0
+margin_bottom = 73.0
+custom_icons/checked_disabled = ExtResource( 7 )
+custom_icons/unchecked_disabled = ExtResource( 8 )
+disabled = true
+
+[node name="SilverCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/GridContainer"]
+modulate = Color( 0.729412, 0.733333, 0.741176, 1 )
+margin_left = 220.0
+margin_right = 270.0
+margin_bottom = 73.0
+custom_icons/checked_disabled = ExtResource( 7 )
+custom_icons/unchecked_disabled = ExtResource( 8 )
+disabled = true
+
+[node name="GoldCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/GridContainer"]
+modulate = Color( 1, 0.878431, 0.490196, 1 )
+margin_left = 274.0
+margin_right = 324.0
+margin_bottom = 73.0
+custom_icons/checked_disabled = ExtResource( 7 )
+custom_icons/unchecked_disabled = ExtResource( 8 )
+disabled = true
+
+[node name="AuthorCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/GridContainer"]
+modulate = Color( 0.286275, 0.803922, 0.941176, 1 )
+margin_left = 328.0
+margin_right = 378.0
+margin_bottom = 73.0
+custom_icons/checked_disabled = ExtResource( 7 )
+custom_icons/unchecked_disabled = ExtResource( 8 )
+disabled = true
+
+[node name="CenterAutoRight" type="Control" parent="MapSelection"]
+margin_left = 668.0
+margin_right = 951.0
+margin_bottom = 668.0
+size_flags_horizontal = 3
+
+[node name="Empty" type="Control" parent="MapSelection"]
+margin_left = 955.0
+margin_right = 1005.0
+margin_bottom = 668.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapSelection"]
+margin_left = 1009.0
+margin_right = 1166.0
+margin_bottom = 668.0
+alignment = 2
+
+[node name="BackButton" type="Button" parent="MapSelection/VBoxContainer"]
+margin_top = 518.0
+margin_right = 157.0
+margin_bottom = 591.0
+text = "Back"
+
+[node name="PlayButton" type="Button" parent="MapSelection/VBoxContainer"]
+margin_top = 595.0
+margin_right = 157.0
+margin_bottom = 668.0
+text = "Start"
+
+[node name="Main" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+margin_left = 338.0
+margin_top = 132.0
+margin_right = 1028.0
+margin_bottom = 635.0
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Main/VBoxContainer"]
+margin_right = 690.0
+margin_bottom = 111.0
+custom_colors/font_color = Color( 0.882353, 0.882353, 0.882353, 1 )
+custom_colors/font_color_shadow = Color( 0.866667, 0.509804, 0, 1 )
+custom_constants/shadow_offset_x = 7
+custom_constants/shadow_offset_y = 10
+custom_fonts/font = SubResource( 1 )
+text = "Screechy Rally"
+
+[node name="Empty" type="Control" parent="Main/VBoxContainer"]
+margin_top = 115.0
+margin_right = 690.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="SingleButton" type="Button" parent="Main/VBoxContainer"]
+margin_left = 137.0
+margin_top = 199.0
+margin_right = 552.0
+margin_bottom = 272.0
+size_flags_horizontal = 4
+text = "Single Player"
+
+[node name="MultiButton" type="Button" parent="Main/VBoxContainer"]
+margin_left = 171.0
+margin_top = 276.0
+margin_right = 519.0
+margin_bottom = 349.0
+size_flags_horizontal = 4
+text = "Multiplayer"
+
+[node name="MusicButton" type="CheckButton" parent="Main/VBoxContainer"]
+margin_left = 220.0
+margin_top = 353.0
+margin_right = 470.0
+margin_bottom = 426.0
+size_flags_horizontal = 4
+pressed = true
+text = "Music"
+
+[node name="QuitButton" type="Button" parent="Main/VBoxContainer"]
+margin_left = 276.0
+margin_top = 430.0
+margin_right = 414.0
+margin_bottom = 503.0
+size_flags_horizontal = 4
+theme = ExtResource( 2 )
+text = "Quit"
+
+[node name="ScreenBorderBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShapeRight" type="CollisionShape2D" parent="ScreenBorderBody"]
+position = Vector2( 1366, 0 )
+rotation = -1.5708
+shape = SubResource( 4 )
+
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="ScreenBorderBody"]
+position = Vector2( 0, 768 )
+shape = SubResource( 4 )
+
+[node name="CollisionShapeTop" type="CollisionShape2D" parent="ScreenBorderBody"]
+rotation = -3.14159
+shape = SubResource( 4 )
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="ScreenBorderBody"]
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -4.5
+autoplay = true
+bus = "Music"
+
+[node name="ScreenFadeInOut" parent="." instance=ExtResource( 9 )]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="ScreenFadeInOut"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 2 )
+anims/fade_in = SubResource( 5 )
+anims/fade_out = SubResource( 3 )
+
+[node name="CarDrift" parent="." instance=ExtResource( 5 )]
+position = Vector2( 226, 278 )
+rotation = 0.698132
+player_id = 0
+
+[node name="CarDrift2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 225, 404 )
+rotation = 0.698132
