@@ -5,6 +5,9 @@ Screechy Rally is a 2D racing game where controlled skids are at the core of the
 Challenge yourself to unlock medals and beat your personal record.
 Or compete with your friends in local multiplayer races (split screen!).
 
+Made with [Godot](https://godotengine.org/)
+<img src="https://godotengine.org/themes/godotengine/assets/favicon.png" width="22" height="22">
+
 ![Screenshot Single Player](screenshots/single_player.png)
 
 ## Dev Notes
