@@ -5,6 +5,8 @@ Screechy Rally is a 2D racing game where controlled skids are at the core of the
 Challenge yourself to unlock medals and beat your personal record.
 Or compete with your friends in local multiplayer races (split screen!).
 
+![Screenshot Single Player](screenshots/single_player.png)
+
 ## Dev Notes
 
 Use of `z_index`:
