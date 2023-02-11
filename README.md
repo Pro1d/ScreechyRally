@@ -33,6 +33,7 @@ Required:
 - [x] Ghost best record (for solo mode)
 - [ ] Control display / config
 - [ ] Sound volume
+- [ ] decorate all maps
 
 Other:
 
@@ -62,19 +63,21 @@ Other:
 - [x] Disable pause overlay when in score screen
 - [ ] Improve engine sound effect
 - [ ] Key mapping in main menu (displayed in a bubble above the car?)
+- [ ] new road blocks
+- [ ] maps environment
 
 ## Start Buzzer sound generation
 
-Générer tonalité: Signal carré 400 (600) Hz, 25%, 0.1 (04) sec
-EQ et filtre -> Basse et Aigue: basse 0db - aigue -9db
-Générer silence: 0.5 sec
-Réverbération: Espace moyen + wet uniquement
-Amplification: 12db
+Générer tonalité: Signal carré 400 (600) Hz, 25%, 0.1 (04) sec.
+EQ et filtre -> Basse et Aigue: basse 0db - aigue -9db.
+Générer silence: 0.5 sec.
+Réverbération: Espace moyen + wet uniquement.
+Amplification: 12db.
 
 ## Catenary-Stamp like icons
 
-draw shape
-generate noise as alpha mask
-	- mix with shape reduced by 1 and smoothed by 0.5
-	- manually create flaw with paint
-apply as alpha to shape
+draw shape.
+generate noise as alpha mask.
+	- mix with shape reduced by 1 and smoothed by 0.5.
+	- manually create flaw with paint.
+apply as alpha to shape.
