@@ -20,6 +20,7 @@ Use of `z_index`:
 - 10=cars
 - 15=medium obstacle (bushes, ...) above car
 - 20=high obstacles (building, trees, ...) above cars
+- 100=in-game UI, like tooltip, player name label
 
 ## TODO
 

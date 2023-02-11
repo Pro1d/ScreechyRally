@@ -1,0 +1,231 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resources/in_game.theme" type="Theme" id=1]
+[ext_resource path="res://scripts/CarControlToolTip.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 20.0
+bg_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+border_width_bottom = 15
+border_color = Color( 0.81, 0, 0, 1 )
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+corner_detail = 3
+shadow_color = Color( 0, 0, 0, 0.231373 )
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.364706, 0.364706, 0.364706, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 4
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 4
+corner_detail = 5
+shadow_color = Color( 0, 0, 0, 0.243137 )
+shadow_size = 5
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="CarControlToolTip" type="PanelContainer"]
+margin_left = -110.0
+margin_top = -220.0
+margin_right = 111.0
+margin_bottom = -54.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 2 )
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 216.0
+margin_bottom = 146.0
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 3
+
+[node name="Empty" type="Control" parent="GridContainer"]
+margin_right = 67.0
+margin_bottom = 68.0
+
+[node name="Up" type="PanelContainer" parent="GridContainer"]
+margin_left = 72.0
+margin_right = 139.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 67, 67 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Up"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 63.0
+text = "Z"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Empty2" type="Control" parent="GridContainer"]
+margin_left = 144.0
+margin_right = 211.0
+margin_bottom = 68.0
+
+[node name="Left" type="PanelContainer" parent="GridContainer"]
+margin_top = 73.0
+margin_right = 67.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 67, 67 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Left"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 63.0
+text = "Q"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Down" type="PanelContainer" parent="GridContainer"]
+margin_left = 72.0
+margin_top = 73.0
+margin_right = 139.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 67, 67 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Down"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 63.0
+text = "S"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Right" type="PanelContainer" parent="GridContainer"]
+margin_left = 144.0
+margin_top = 73.0
+margin_right = 211.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 67, 67 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Right"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 63.0
+text = "D"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )

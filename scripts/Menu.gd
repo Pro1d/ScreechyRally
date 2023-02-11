@@ -1,5 +1,7 @@
 extends Control
 
+const CarControlToolTip = preload("res://scenes/UI/CarControlToolTip.tscn")
+
 enum Menu {Main, MapSelection}
 
 onready var main_menu := $Main
@@ -31,6 +33,10 @@ func _ready():
 	
 	for car in [$CarDrift, $CarDrift2]:
 		car.color = Global.player_colors[car.player_id]
+		var control_tooltip := CarControlToolTip.instance()
+		car.get_control_anchor().add_child(control_tooltip)
+		control_tooltip.set_player_color(car.player_id)
+		control_tooltip.control_index = car.player_id
 	
 	$ScreenFadeInOut.fade_in()
 

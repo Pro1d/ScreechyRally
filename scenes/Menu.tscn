@@ -270,10 +270,10 @@ anims/fade_in = SubResource( 5 )
 anims/fade_out = SubResource( 3 )
 
 [node name="CarDrift" parent="." instance=ExtResource( 5 )]
-position = Vector2( 226, 278 )
-rotation = 0.698132
+position = Vector2( 1098, 580 )
+rotation = -2.79253
 player_id = 0
 
 [node name="CarDrift2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 225, 404 )
-rotation = 0.698132
+position = Vector2( 279, 580 )
+rotation = -0.349066

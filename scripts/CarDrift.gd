@@ -201,8 +201,8 @@ func _ready() -> void:
 	$DriftTrailEmitterRight.world = get_parent()
 
 func _process(_delta : float) -> void:
-	$Node2D/Label.text = str(round(linear_velocity.length()))
-	$Node2D.global_rotation = 0
+	$ControlAnchor/SpeedLabel.text = str(round(linear_velocity.length()))
+	$ControlAnchor.global_rotation = 0
 	if control_mode == ControlMode.ENABLED:
 		if Input.is_action_just_pressed("player"+str(player_id+1)+"_reset"):
 			if reset_position != null:
@@ -223,7 +223,7 @@ func _physics_process(delta : float) -> void:
 	var free_wheel := true
 	
 	if control_mode != ControlMode.DISABLED:
-		var action_prefix = "player" + str(player_id + 1) + "_"
+		var action_prefix := "player" + str(player_id + 1) + "_"
 		# var action_boost := Input.get_action_strength(action_prefix + "boost") > 0
 		var action_forward := Input.get_action_strength(action_prefix + "up")
 		var action_backward := Input.get_action_strength(action_prefix + "down")
@@ -425,3 +425,6 @@ func _set_ghost_mode(ghost : bool) -> void:
 func _set_color(c : Color) -> void:
 	color = c
 	$SpriteModulate.modulate = c
+
+func get_control_anchor() -> Node2D:
+	return $ControlAnchor as Node2D

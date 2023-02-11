@@ -136,11 +136,13 @@ stream = ExtResource( 8 )
 autoplay = true
 bus = "Fx"
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
+[node name="ControlAnchor" type="Node2D" parent="."]
 position = Vector2( 26, 0 )
+z_index = 100
+z_as_relative = false
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="SpeedLabel" type="Label" parent="ControlAnchor"]
+visible = false
 margin_left = -34.0
 margin_top = -75.604
 margin_right = 35.0
