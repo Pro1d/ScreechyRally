@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -4.5 ]
+"values": [ -9.0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -4.5, -40.0 ]
+"values": [ -9.0, -40.0 ]
 }
 
 [node name="Menu" type="Control"]
@@ -257,7 +257,7 @@ current = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -4.5
+volume_db = -9.0
 autoplay = true
 bus = "Music"
 

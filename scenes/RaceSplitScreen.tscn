@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -5.5 ]
+"values": [ -9.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CanvasLayer/PauseOverlay:allow_pause")
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -5.5, -21.748 ]
+"values": [ -9.0, -22.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CanvasLayer/PauseOverlay:allow_pause")
@@ -359,7 +359,7 @@ bus = "Fx"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 8 )
-volume_db = -5.5
+volume_db = -9.0
 autoplay = true
 bus = "Music"
 
