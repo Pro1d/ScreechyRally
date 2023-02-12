@@ -1,7 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/in_game.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/CarControlToolTip.gd" type="Script" id=2]
+[ext_resource path="res://resources/arrows/down.tres" type="Texture" id=3]
+[ext_resource path="res://resources/arrows/left.tres" type="Texture" id=4]
+[ext_resource path="res://resources/arrows/right.tres" type="Texture" id=5]
+[ext_resource path="res://resources/arrows/up.tres" type="Texture" id=6]
+[ext_resource path="res://resources/arrows/enter.tres" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 5.0
@@ -70,19 +75,19 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, true ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -97,19 +102,19 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -128,101 +133,162 @@ script = ExtResource( 2 )
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 216.0
+margin_right = 219.0
 margin_bottom = 146.0
 custom_constants/vseparation = 5
 custom_constants/hseparation = 5
 columns = 3
 
 [node name="Empty" type="Control" parent="GridContainer"]
-margin_right = 67.0
+margin_right = 68.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 68, 68 )
 
 [node name="Up" type="PanelContainer" parent="GridContainer"]
-margin_left = 72.0
-margin_right = 139.0
+margin_left = 73.0
+margin_right = 141.0
 margin_bottom = 68.0
-rect_min_size = Vector2( 67, 67 )
+rect_min_size = Vector2( 68, 68 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
 [node name="Label" type="Label" parent="GridContainer/Up"]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 63.0
 text = "Z"
 align = 1
 valign = 1
 clip_text = true
 
-[node name="Empty2" type="Control" parent="GridContainer"]
-margin_left = 144.0
-margin_right = 211.0
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Up"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+texture = ExtResource( 6 )
+stretch_mode = 4
+
+[node name="Reset" type="PanelContainer" parent="GridContainer"]
+self_modulate = Color( 1, 1, 1, 0.596078 )
+margin_left = 146.0
+margin_right = 214.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 68, 68 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Label" type="Label" parent="GridContainer/Reset"]
+visible = false
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+text = "R"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Reset"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+texture = ExtResource( 7 )
+stretch_mode = 4
 
 [node name="Left" type="PanelContainer" parent="GridContainer"]
 margin_top = 73.0
-margin_right = 67.0
+margin_right = 68.0
 margin_bottom = 141.0
-rect_min_size = Vector2( 67, 67 )
+rect_min_size = Vector2( 68, 68 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
 [node name="Label" type="Label" parent="GridContainer/Left"]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 63.0
 text = "Q"
 align = 1
 valign = 1
 clip_text = true
 
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Left"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
 [node name="Down" type="PanelContainer" parent="GridContainer"]
-margin_left = 72.0
+margin_left = 73.0
 margin_top = 73.0
-margin_right = 139.0
+margin_right = 141.0
 margin_bottom = 141.0
-rect_min_size = Vector2( 67, 67 )
+rect_min_size = Vector2( 68, 68 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
 [node name="Label" type="Label" parent="GridContainer/Down"]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 63.0
 text = "S"
 align = 1
 valign = 1
 clip_text = true
 
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Down"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+
 [node name="Right" type="PanelContainer" parent="GridContainer"]
-margin_left = 144.0
+margin_left = 146.0
 margin_top = 73.0
-margin_right = 211.0
+margin_right = 214.0
 margin_bottom = 141.0
-rect_min_size = Vector2( 67, 67 )
+rect_min_size = Vector2( 68, 68 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 2 )
 
 [node name="Label" type="Label" parent="GridContainer/Right"]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 63.0
 text = "D"
 align = 1
 valign = 1
 clip_text = true
 
+[node name="TextureRect" type="TextureRect" parent="GridContainer/Right"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 63.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.2
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
