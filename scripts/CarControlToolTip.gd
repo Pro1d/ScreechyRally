@@ -38,6 +38,16 @@ func _ready() -> void:
 	var _e := timer.connect("timeout", self, "on_timeout")
 	$AnimationPlayer.playback_speed = 1.0 / 0.4
 
+func _process(_delta : float) -> void:
+	set_position(init_offset)
+	var global_rect := get_global_rect()
+	var margin := Vector2(10.0, 10.0)
+	var min_pos := margin
+	var max_pos := get_viewport_rect().size - margin - global_rect.size
+	set_global_position(Vector2(
+		clamp(global_rect.position.x, min_pos.x, max_pos.x),
+		clamp(global_rect.position.y, min_pos.y, max_pos.y)))
+
 func set_player_color(player_id : int) -> void:
 	var style_box : StyleBoxFlat = get_stylebox("panel").duplicate()
 	var color : Color = Global.player_colors[player_id]

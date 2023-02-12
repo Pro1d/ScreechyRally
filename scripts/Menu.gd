@@ -32,6 +32,7 @@ func _ready():
 	_change_menu(main_menu)
 	
 	for car in [$CarDrift, $CarDrift2]:
+		car.save_reset_position()
 		car.color = Global.player_colors[car.player_id]
 		var control_tooltip := CarControlToolTip.instance()
 		car.get_control_anchor().add_child(control_tooltip)
