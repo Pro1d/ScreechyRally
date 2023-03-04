@@ -1,10 +1,11 @@
 extends PanelContainer
 
-const IconUp := preload("res://resources/arrows/up.tres")
-const IconDown := preload("res://resources/arrows/down.tres")
-const IconLeft := preload("res://resources/arrows/left.tres")
-const IconRight := preload("res://resources/arrows/right.tres")
-const IconEnter := preload("res://resources/arrows/enter.tres")
+const IconUp := preload("res://resources/icons/up.tres")
+const IconDown := preload("res://resources/icons/down.tres")
+const IconLeft := preload("res://resources/icons/left.tres")
+const IconRight := preload("res://resources/icons/right.tres")
+const IconEnter := preload("res://resources/icons/enter.tres")
+const JoypadIcon := preload("res://resources/icons/joypad.tres")
 const icon_keys := {
 	KEY_UP: IconUp,
 	KEY_DOWN: IconDown,
@@ -14,8 +15,18 @@ const icon_keys := {
 	KEY_KP_ENTER: IconEnter,
 }
 const actions := ["up", "down", "left", "right", "reset"]
+var control_options := [
+	[true, OS.get_scancode_string(OS.keyboard_get_scancode_from_physical(KEY_W))+OS.get_scancode_string(OS.keyboard_get_scancode_from_physical(KEY_A))+'SD'],
+	[true, 'Arrows'],
+	#[true, 3, 'Num Pad'],
+	[true, 'Ergo'],
+	#[true, 5, 'OKLM'],
+	[false, 'Joypad 1'],
+	[false, 'Joypad 2'],
+]
+const joypad_mapping := ["RT", "LT", KEY_LEFT, KEY_RIGHT, "B"]
 
-export var control_index := 0 setget set_control_index
+export var player_index := 0 setget set_player_index
 
 onready var timer := $Timer as Timer
 onready var labels := [
@@ -33,10 +44,19 @@ onready var texture_rects := [
 	$GridContainer/Reset/TextureRect,
 ]
 onready var init_offset := rect_position
+onready var keyboard_icon = $GridContainer/OptionButton.icon
 
 func _ready() -> void:
-	var _e := timer.connect("timeout", self, "on_timeout")
+	var _e := timer.connect("timeout", self, "_on_timeout")
 	$AnimationPlayer.playback_speed = 1.0 / 0.4
+	assert(control_options.size() == ControlManager.control_count())
+	for c in control_options:
+		if c[0]:
+			$GridContainer/OptionButton.add_icon_item(keyboard_icon, c[1])
+		else:
+			$GridContainer/OptionButton.add_icon_item(JoypadIcon, c[1])
+	_e = $GridContainer/OptionButton.connect("item_selected", self, "_on_control_selected")
+	_e = ControlManager.connect("control_assignment_changed", self, "_on_control_assignment_changed")
 
 func _process(_delta : float) -> void:
 	set_position(init_offset)
@@ -48,42 +68,10 @@ func _process(_delta : float) -> void:
 		clamp(global_rect.position.x, min_pos.x, max_pos.x),
 		clamp(global_rect.position.y, min_pos.y, max_pos.y)))
 
-func set_player_color(player_id : int) -> void:
-	var style_box : StyleBoxFlat = get_stylebox("panel").duplicate()
-	var color : Color = Global.player_colors[player_id]
-	color.v *= 0.8
-	style_box.border_color = color
-	add_stylebox_override("panel", style_box)
-
-func set_control_index(index : int) -> void:
-	control_index = index
-	var action_prefix := "player" + str(control_index + 1) + "_"
-	for i in range(actions.size()):
-		for e in InputMap.get_action_list(action_prefix + actions[i]):
-			if e is InputEventKey:
-				var key := e as InputEventKey
-				var local_scancode := OS.keyboard_get_scancode_from_physical(key.physical_scancode)
-				if local_scancode in icon_keys:
-					labels[i].visible = false
-					texture_rects[i].visible = true
-					(texture_rects[i] as TextureRect).texture = icon_keys[local_scancode]
-				else:
-					labels[i].visible = true
-					texture_rects[i].visible = false
-					var s := OS.get_scancode_string(local_scancode)
-					(labels[i] as Label).text = s.replace("Kp ", "")
-					print(action_prefix + actions[i], ": ", e.physical_scancode, " [", s, "]")
-				break # display only first
-			else:
-				print(action_prefix + actions[i], " not key event:", e)
-
-func on_timeout() -> void:
-	if visible:
-		$AnimationPlayer.play("fade_out")
-	else:
-		$AnimationPlayer.play("fade_in")
-
 func _input(_event : InputEvent) -> void:
+	var control_index := ControlManager.player_assignment(player_index)
+	if control_index == ControlManager.NOT_FOUND:
+		return
 	var action_prefix := "player" + str(control_index + 1) + "_"
 	
 	var action_pressed := false
@@ -97,3 +85,71 @@ func _input(_event : InputEvent) -> void:
 			timer.start()
 	else:
 		timer.stop()
+
+func _on_timeout() -> void:
+	if visible:
+		$AnimationPlayer.play("fade_out")
+	else:
+		$AnimationPlayer.play("fade_in")
+
+func set_player_index(p_idx : int) -> void:
+	player_index = p_idx
+	var control_index := ControlManager.player_assignment(player_index)
+	$GridContainer/OptionButton.select(control_index)
+	_update_control_availability()
+	_override_option_button_display()
+	_update_keys_display()
+	_update_player_color()
+
+func _update_player_color() -> void:
+	var style_box : StyleBoxFlat = get_stylebox("panel").duplicate()
+	var color : Color = Global.player_colors[player_index]
+	color.v *= 0.8
+	style_box.border_color = color
+	add_stylebox_override("panel", style_box)
+
+func _update_control_availability() -> void:
+	for i in range(ControlManager.control_count()):
+		$GridContainer/OptionButton.set_item_disabled(i, not ControlManager.is_available(i, player_index))
+
+func _update_keys_display() -> void:
+	var control_index := ControlManager.player_assignment(player_index)
+	var action_prefix := ControlManager.action_prefix(control_index)
+	for i in range(actions.size()):
+		for e in InputMap.get_action_list(action_prefix + actions[i]):
+			if e is InputEventKey:
+				var key := e as InputEventKey
+				var local_scancode := OS.keyboard_get_scancode_from_physical(key.physical_scancode)
+				if local_scancode in icon_keys:
+					labels[i].visible = false
+					texture_rects[i].visible = true
+					(texture_rects[i] as TextureRect).texture = icon_keys[local_scancode]
+				else:
+					labels[i].visible = true
+					texture_rects[i].visible = false
+					var s := OS.get_scancode_string(local_scancode)
+					(labels[i] as Label).text = s.replace("Kp ", "").replace("Comma", ",").replace("Semicolon", ";")
+				break # display only first
+			else:
+				if joypad_mapping[i] is int:
+					labels[i].visible = false
+					texture_rects[i].visible = true
+					(texture_rects[i] as TextureRect).texture = icon_keys[joypad_mapping[i]]
+				else:
+					labels[i].visible = true
+					texture_rects[i].visible = false
+					(labels[i] as Label).text = joypad_mapping[i]
+
+func _override_option_button_display() -> void:
+	$GridContainer/OptionButton.text = ""
+	var control_index := ControlManager.player_assignment(player_index)
+	$GridContainer/OptionButton.icon = keyboard_icon if control_options[control_index][0] else JoypadIcon
+
+func _on_control_selected(control_index : int):
+	ControlManager.assign(control_index, player_index)
+	_override_option_button_display()
+
+func _on_control_assignment_changed(_player_index : int, _prev_control_index : int, _new_control_index : int) -> void:
+	if _player_index == player_index:
+		_update_keys_display()
+	_update_control_availability()

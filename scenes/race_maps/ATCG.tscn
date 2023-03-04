@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/RaceMap.gd" type="Script" id=1]
 [ext_resource path="res://resources/race_tile_set2.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/decors/Bush01.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/decors/Tree01.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/decors/Bush02.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/decors/Building01.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/decors/Building02.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/decors/Rock01.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/decors/Tree02.tscn" type="PackedScene" id=10]
 
 [node name="RaceMap" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,3 +21,922 @@ cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 collision_mask = 3
 format = 1
 tile_data = PoolIntArray( -655356, -536870889, 0, -655355, -536870893, 0, -655354, 1073741835, 0, -655353, -1073741808, 0, -589820, -536870892, 0, -589819, -536870891, 0, -589818, -536870893, 0, -589817, 1073741828, 0, -589816, 10, 0, -589815, -1073741805, 0, -589814, 1610612756, 0, -589813, 14, 0, -589812, -1073741805, 0, -589811, -1073741801, 0, -524284, -536870903, 0, -524283, -536870892, 0, -524282, -536870890, 0, -524281, 536870928, 0, -524280, 14, 0, -524279, 20, 0, -524278, -1610612717, 0, -524277, 11, 0, -524276, 20, 0, -524275, 23, 0, -458748, -1610612716, 0, -458747, 19, 0, -393212, 1610612755, 0, -393211, -1073741804, 0, -327676, -1610612725, 0, -327675, -1073741814, 0, -262140, -1073741823, 0, -262139, -1610612725, 0, -196604, -1610612716, 0, -196603, 19, 0, -65540, 1610612759, 0, -65539, 1610612756, 0, -65538, -1073741800, 0, -65537, -1610612710, 0, -131068, 1610612755, 0, -131067, -1073741804, 0, -4, 1610612755, 0, -3, 1610612758, 0, -2, -1073741798, 0, -1, -1610612712, 0, -65536, 1610612747, 0, -65535, -1073741805, 0, -65534, 1610612756, 0, -65533, 1610612745, 0, -65532, 17, 0, -65531, 19, 0, 65532, -1610612734, 0, 65533, 1610612752, 0, 65534, 1610612750, 0, 65535, 14, 0, 0, 1073741824, 0, 1, 20, 0, 2, -1610612717, 0, 3, 11, 0, 4, 20, 0, 5, 23, 0, 131068, -1610612716, 0, 131069, 19, 0, 196586, -2147483641, 0, 196604, 1610612755, 0, 196605, -1073741804, 0, 262140, -1073741823, 0, 262141, -1073741813, 0, 327676, -1610612716, 0, 327677, 19, 0, 393212, -1610612713, 0, 393213, 23, 0 )
+
+[node name="Building01" parent="." instance=ExtResource( 7 )]
+position = Vector2( 396, -1687 )
+rotation = 4.66202
+
+[node name="Building03" parent="Building01" instance=ExtResource( 7 )]
+position = Vector2( 298.755, 7.08258 )
+
+[node name="Building05" parent="Building01" instance=ExtResource( 7 )]
+position = Vector2( -292.298, 3.88538 )
+
+[node name="Building06" parent="Building01" instance=ExtResource( 7 )]
+position = Vector2( -585.457, 6.72784 )
+
+[node name="Building02" parent="." instance=ExtResource( 8 )]
+position = Vector2( 9, 756 )
+
+[node name="Building04" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2380, -1092 )
+
+[node name="Bush06" parent="." instance=ExtResource( 3 )]
+position = Vector2( 540, -803 )
+rotation = -0.0281282
+
+[node name="Bush07" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush10" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 4.50568, -451.953 )
+rotation = 0.230798
+
+[node name="Bush07" parent="Bush06/Bush10" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush10" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush10" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush10/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush10/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush11" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 9.80219, -745.526 )
+rotation = 0.230798
+
+[node name="Bush07" parent="Bush06/Bush11" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush11" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush11" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush11/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush11/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush12" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( -1.90814, -1041.04 )
+rotation = 0.230798
+
+[node name="Bush07" parent="Bush06/Bush12" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush12" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush12" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush12/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush12/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush13" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 332.014, -123.32 )
+rotation = -1.2251
+scale = Vector2( 1, 1 )
+
+[node name="Bush07" parent="Bush06/Bush13" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush13" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush13" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush13/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush13/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush14" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 361.451, -493.399 )
+rotation = -1.25766
+
+[node name="Bush07" parent="Bush06/Bush14" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush14" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush14" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush14/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush14/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush15" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 341.081, -1228.55 )
+rotation = -1.66976
+
+[node name="Bush07" parent="Bush06/Bush15" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush15" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush15" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush15/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush15/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush16" parent="Bush06" instance=ExtResource( 3 )]
+position = Vector2( 382.473, -858.265 )
+rotation = -1.41721
+
+[node name="Bush07" parent="Bush06/Bush16" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush16" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush09" parent="Bush06/Bush16" instance=ExtResource( 3 )]
+position = Vector2( 180, -45 )
+
+[node name="Bush07" parent="Bush06/Bush16/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 56.9999, -12.9999 )
+rotation = -0.895087
+scale = Vector2( 1, 1 )
+
+[node name="Bush08" parent="Bush06/Bush16/Bush09" instance=ExtResource( 3 )]
+position = Vector2( 117, -25 )
+rotation = -3.03342
+
+[node name="Bush02" parent="." instance=ExtResource( 6 )]
+position = Vector2( -541, -66 )
+
+[node name="Bush04" parent="Bush02" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush02" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush05" parent="Bush02" instance=ExtResource( 6 )]
+position = Vector2( -54, 45 )
+rotation = -2.33652
+scale = Vector2( 1, 1 )
+
+[node name="Bush04" parent="Bush02/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush02/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush06" parent="Bush02" instance=ExtResource( 6 )]
+position = Vector2( 289, 25 )
+rotation = -2.62885
+
+[node name="Bush04" parent="Bush02/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush02/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush07" parent="Bush02" instance=ExtResource( 6 )]
+position = Vector2( 25, -101 )
+rotation = 2.93952
+
+[node name="Bush04" parent="Bush02/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush02/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Rock01" parent="Bush02" instance=ExtResource( 9 )]
+position = Vector2( 48, -148 )
+
+[node name="Rock03" parent="Bush02/Rock01" instance=ExtResource( 9 )]
+position = Vector2( 34, 29 )
+rotation = 0.145635
+scale = Vector2( 1.12894, 0.616793 )
+
+[node name="Rock04" parent="Bush02/Rock01" instance=ExtResource( 9 )]
+position = Vector2( -34, 16 )
+rotation = 0.0668408
+scale = Vector2( 0.456929, 0.446974 )
+
+[node name="Rock03" parent="Bush02" instance=ExtResource( 9 )]
+position = Vector2( -130, 71 )
+rotation = -0.544593
+
+[node name="Rock04" parent="Bush02/Rock03" instance=ExtResource( 9 )]
+position = Vector2( 49.0449, 17.3454 )
+rotation = 0.346152
+scale = Vector2( 0.456929, 0.446974 )
+
+[node name="Bush03" parent="." instance=ExtResource( 6 )]
+position = Vector2( -355, 423 )
+
+[node name="Bush04" parent="Bush03" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush03" instance=ExtResource( 6 )]
+position = Vector2( 89, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush05" parent="Bush03" instance=ExtResource( 6 )]
+position = Vector2( -54, 45 )
+rotation = -2.33652
+scale = Vector2( 1, 1 )
+
+[node name="Bush04" parent="Bush03/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush03/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush06" parent="Bush03" instance=ExtResource( 6 )]
+position = Vector2( 344, -56 )
+rotation = -2.62885
+
+[node name="Bush04" parent="Bush03/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush05" parent="Bush03/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 38.6257, -143.388 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush03/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush07" parent="Bush03" instance=ExtResource( 6 )]
+position = Vector2( 25, -101 )
+rotation = 2.93952
+
+[node name="Bush04" parent="Bush03/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush03/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Rock01" parent="Bush03" instance=ExtResource( 9 )]
+position = Vector2( -86, 120 )
+rotation = -0.100867
+
+[node name="Rock03" parent="Bush03/Rock01" instance=ExtResource( 9 )]
+position = Vector2( 34, 29 )
+rotation = 0.145635
+scale = Vector2( 1.12894, 0.616793 )
+
+[node name="Rock04" parent="Bush03/Rock01" instance=ExtResource( 9 )]
+position = Vector2( -34, 16 )
+rotation = 0.0668408
+scale = Vector2( 0.456929, 0.446974 )
+
+[node name="Rock03" parent="Bush03" instance=ExtResource( 9 )]
+position = Vector2( 116, -93 )
+rotation = -0.0587313
+
+[node name="Rock04" parent="Bush03/Rock03" instance=ExtResource( 9 )]
+position = Vector2( 49.0449, 17.3454 )
+rotation = 0.346152
+scale = Vector2( 0.456929, 0.446974 )
+
+[node name="Bush04" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1069, 353 )
+rotation = -1.68209
+
+[node name="Bush04" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush05" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( -119.076, 48.072 )
+rotation = -2.33652
+scale = Vector2( 1, 1 )
+
+[node name="Bush04" parent="Bush04/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush04/Bush05" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush08" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( -384.062, -29.8409 )
+rotation = -2.33652
+scale = Vector2( 1, 1 )
+
+[node name="Bush04" parent="Bush04/Bush08" instance=ExtResource( 6 )]
+position = Vector2( 162.293, -73.8499 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush04/Bush08" instance=ExtResource( 6 )]
+position = Vector2( -12.5359, 120.983 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush06" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( 300, 36 )
+rotation = -2.62885
+
+[node name="Bush04" parent="Bush04/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush04/Bush06" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Bush07" parent="Bush04" instance=ExtResource( 6 )]
+position = Vector2( 25, -101 )
+rotation = 2.93952
+
+[node name="Bush04" parent="Bush04/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 86, -44 )
+rotation = 2.62411
+scale = Vector2( 0.858099, 0.858099 )
+
+[node name="Bush03" parent="Bush04/Bush07" instance=ExtResource( 6 )]
+position = Vector2( 85, 29 )
+rotation = -1.83991
+scale = Vector2( 1.06792, 1.06792 )
+
+[node name="Rock01" parent="Bush04" instance=ExtResource( 9 )]
+position = Vector2( 156.075, -55.0054 )
+rotation = 1.54832
+
+[node name="Rock03" parent="Bush04/Rock01" instance=ExtResource( 9 )]
+position = Vector2( 34, 29 )
+rotation = 0.145635
+scale = Vector2( 0.762036, 0.715516 )
+
+[node name="Tree01" parent="." instance=ExtResource( 5 )]
+position = Vector2( 806, 878 )
+rotation = -0.899264
+
+[node name="Tree04" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( 189.342, 119.218 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( 375.407, -183.394 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree05" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -462.13, 51.7728 )
+rotation = -2.01581
+
+[node name="Tree04" parent="Tree01/Tree05" instance=ExtResource( 5 )]
+position = Vector2( 219.88, 117.483 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree05" instance=ExtResource( 5 )]
+position = Vector2( 383, -144 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree08" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -1564.53, -203.83 )
+rotation = 0.0222892
+scale = Vector2( 1, 1 )
+
+[node name="Tree04" parent="Tree01/Tree08" instance=ExtResource( 5 )]
+position = Vector2( 261.603, -124.156 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree08" instance=ExtResource( 5 )]
+position = Vector2( 449.322, -183.833 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree09" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -1534.83, -600.418 )
+rotation = -1.30757
+
+[node name="Tree04" parent="Tree01/Tree09" instance=ExtResource( 5 )]
+position = Vector2( 192.714, 202.903 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree09" instance=ExtResource( 5 )]
+position = Vector2( 383, -144 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree11" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( 463.011, -1932.74 )
+rotation = 0.899264
+
+[node name="Tree04" parent="Tree01/Tree11" instance=ExtResource( 5 )]
+position = Vector2( 309, 105 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree11" instance=ExtResource( 5 )]
+position = Vector2( 282, -215 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree12" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -345.078, -2552.53 )
+rotation = 0.899264
+
+[node name="Tree04" parent="Tree01/Tree12" instance=ExtResource( 5 )]
+position = Vector2( 117, 229 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree12" instance=ExtResource( 5 )]
+position = Vector2( 450, -265 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree13" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -1559.89, -1893.62 )
+rotation = 1.33804
+
+[node name="Tree04" parent="Tree01/Tree13" instance=ExtResource( 5 )]
+position = Vector2( 151, 111 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree13" instance=ExtResource( 5 )]
+position = Vector2( 317.817, -61.8799 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree14" parent="Tree01" instance=ExtResource( 5 )]
+position = Vector2( -1231.89, -2048.28 )
+rotation = -0.343797
+
+[node name="Tree04" parent="Tree01/Tree14" instance=ExtResource( 5 )]
+position = Vector2( 129.064, 132.15 )
+rotation = 2.59465
+scale = Vector2( 0.875898, 0.890695 )
+
+[node name="Tree07" parent="Tree01/Tree14" instance=ExtResource( 5 )]
+position = Vector2( 383, -144 )
+rotation = -2.43841
+scale = Vector2( 0.97883, 0.97883 )
+
+[node name="Tree02" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2675, -1672 )
+
+[node name="Tree03" parent="Tree02" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree02" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree02" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree02" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree03" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2068, -1511 )
+rotation = -0.35927
+
+[node name="Tree03" parent="Tree03" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree03" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree03" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree03" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree05" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3537, -1727 )
+rotation = 1.68564
+
+[node name="Tree03" parent="Tree05" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree05" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree05" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree05" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree06" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2177, -2420 )
+rotation = -0.35927
+
+[node name="Tree03" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree07" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( -147.137, 33.4004 )
+rotation = -1.9461
+
+[node name="Tree03" parent="Tree06/Tree07" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree06/Tree07" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree06/Tree07" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree06/Tree07" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree08" parent="Tree06" instance=ExtResource( 10 )]
+position = Vector2( 741.62, 374.668 )
+
+[node name="Tree03" parent="Tree06/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree06/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree06/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree06/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree09" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3941, -1657 )
+rotation = -2.63442
+
+[node name="Tree03" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree10" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 671.23, 909.459 )
+rotation = -2.64828
+
+[node name="Tree03" parent="Tree09/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree09/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree09/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree09/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree08" parent="Tree09" instance=ExtResource( 10 )]
+position = Vector2( 1284.18, 532.26 )
+rotation = -1.52889
+
+[node name="Tree03" parent="Tree09/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree09/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree09/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree09/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree12" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1485, -3153 )
+rotation = -0.70028
+
+[node name="Tree03" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree10" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 671.23, 909.459 )
+rotation = -2.64828
+
+[node name="Tree03" parent="Tree12/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree12/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree12/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree12/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree08" parent="Tree12" instance=ExtResource( 10 )]
+position = Vector2( 1182.92, 1437.65 )
+rotation = -1.52889
+
+[node name="Tree03" parent="Tree12/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree12/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree12/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree12/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree10" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1708, -1805 )
+rotation = 0.457838
+
+[node name="Tree03" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree10" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 671.23, 909.459 )
+rotation = -2.64828
+
+[node name="Tree03" parent="Tree10/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree10/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree10/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree10/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree11" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 1062.63, 1688.17 )
+rotation = -2.25715
+
+[node name="Tree03" parent="Tree10/Tree11" instance=ExtResource( 10 )]
+position = Vector2( 602.508, 402.643 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree10/Tree11" instance=ExtResource( 10 )]
+position = Vector2( 355.693, -42.2958 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree10/Tree11" instance=ExtResource( 10 )]
+position = Vector2( 461.86, 44.7903 )
+
+[node name="Tree06" parent="Tree10/Tree11" instance=ExtResource( 10 )]
+position = Vector2( -15.7567, -470.809 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree08" parent="Tree10" instance=ExtResource( 10 )]
+position = Vector2( 1122.35, 569.572 )
+rotation = -1.52889
+
+[node name="Tree03" parent="Tree10/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree10/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree10/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree10/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree11" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1363, -2748 )
+rotation = 2.37304
+
+[node name="Tree03" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 212, 40 )
+scale = Vector2( 0.911681, 0.919133 )
+
+[node name="Tree04" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 483, -12 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )
+
+[node name="Tree06" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 238, 162 )
+scale = Vector2( 1.08631, 1.08631 )
+
+[node name="Tree10" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 884.259, 938.419 )
+rotation = -2.64828
+
+[node name="Tree04" parent="Tree11/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 496.11, -12.6428 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree11/Tree10" instance=ExtResource( 10 )]
+position = Vector2( 376.687, 373.432 )
+
+[node name="Tree08" parent="Tree11" instance=ExtResource( 10 )]
+position = Vector2( 1087.52, 703.738 )
+rotation = -0.816715
+
+[node name="Tree04" parent="Tree11/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 630.283, 54.1273 )
+scale = Vector2( 0.817391, 0.817391 )
+
+[node name="Tree05" parent="Tree11/Tree08" instance=ExtResource( 10 )]
+position = Vector2( 463, 239 )

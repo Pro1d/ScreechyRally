@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/RaceMap.gd" type="Script" id=1]
 [ext_resource path="res://resources/race_tile_set2.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/decors/Building01.tscn" type="PackedScene" id=3]
 
 [node name="RaceMap" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,4 +14,299 @@ cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( -458757, -536870897, 0, -458756, -2147483630, 0, -458755, 536870923, 0, -458754, 536870930, 0, -458753, 1610612751, 0, -524288, 3, 0, -524287, 15, 0, -524286, 1610612751, 0, -524285, -1610612718, 0, -524284, -536870897, 0, -393221, -2147483645, 0, -393220, -536870909, 0, -393219, -2147483630, 0, -393218, -536870894, 0, -393217, 18, 0, -458752, -1073741820, 0, -458751, 536870923, 0, -458750, 3, 0, -458749, -536870908, 0, -458748, -536870909, 0, -327685, -2147483645, 0, -327684, -536870909, 0, -327683, -2147483645, 0, -327682, 1073741839, 0, -327681, -1073741821, 0, -393216, 1610612754, 0, -393215, 536870927, 0, -393214, 1073741827, 0, -393213, -536870908, 0, -393212, -536870909, 0, -262149, -2147483634, 0, -262148, -2147483633, 0, -262147, 1073741842, 0, -262146, 536870930, 0, -262145, -1073741821, 0, -327680, -1610612718, 0, -327679, -2147483630, 0, -327678, 536870915, 0, -327677, -536870908, 0, -327676, -536870909, 0, -196613, -2147483637, 0, -196612, -536870897, 0, -196611, -2147483630, 0, -196610, -536870894, 0, -196609, -1073741806, 0, -262144, -1610612733, 0, -262143, -1073741821, 0, -262142, 1073741827, 0, -262141, 1073741827, 0, -262140, -536870894, 0, -131077, -2147483645, 0, -131076, -536870909, 0, -131075, -2147483645, 0, -131074, 1073741839, 0, -131073, 18, 0, -196608, -1610612733, 0, -196607, -1073741810, 0, -196606, 18, 0, -196605, 3, 0, -196604, 536870930, 0, -65541, -2147483645, 0, -65540, -536870909, 0, -65539, -1073741806, 0, -65538, 11, 0, -65537, 1610612739, 0, -131072, 1610612754, 0, -131071, -1610612725, 0, -131070, -1073741821, 0, -131069, 4, 0, -131068, -1610612733, 0, -5, -536870898, 0, -4, -1073741821, 0, -3, 14, 0, -2, 3, 0, -1, 3, 0, -65536, 15, 0, -65535, -1073741806, 0, -65534, 1610612739, 0, -65533, 1610612754, 0, -65532, -1610612722, 0, 65531, -536870898, 0, 65532, -1610612721, 0, 65533, 1610612751, 0, 65534, 1073741828, 0, 65535, 1073741828, 0, 0, 1073741824, 0, 1, 14, 0, 2, 3, 0, 3, -1610612718, 0, 4, -536870898, 0, 131067, 1073741842, 0, 131068, 536870926, 0, 131069, 536870926, 0, 131070, 1073741827, 0, 131071, 1073741827, 0, 65536, 1073741839, 0, 65537, 536870927, 0, 65538, 1073741827, 0, 65539, 1610612739, 0, 65540, 1610612754, 0, 196586, -2147483641, 0 )
+tile_data = PoolIntArray( -589831, 18, 0, -589830, 3, 0, -589829, 1610612750, 0, -589828, 1610612750, 0, -589827, 1610612750, 0, -589826, 1610612750, 0, -589825, 1610612750, 0, -655360, 1610612750, 0, -655359, 1610612750, 0, -655358, 1610612750, 0, -655357, 1610612750, 0, -655356, 1610612750, 0, -655355, 3, 0, -655354, -1073741808, 0, -524295, -1073741821, 0, -524294, 1610612754, 0, -589819, -1073741806, 0, -589818, -1610612733, 0, -458759, -1073741810, 0, -458757, -536870897, 0, -458756, -2147483630, 0, -458755, 536870923, 0, -458754, 536870930, 0, -458753, 1610612751, 0, -524288, 3, 0, -524287, 15, 0, -524286, 1610612751, 0, -524285, -1610612718, 0, -524284, -536870897, 0, -524282, -1073741810, 0, -393223, -1073741810, 0, -393221, -2147483645, 0, -393220, -536870909, 0, -393219, -2147483630, 0, -393218, -536870894, 0, -393217, 18, 0, -458752, -1073741820, 0, -458751, 536870923, 0, -458750, 3, 0, -458749, -536870908, 0, -458748, -536870909, 0, -458746, -1073741810, 0, -327687, -1073741810, 0, -327685, -2147483645, 0, -327684, -536870909, 0, -327683, -2147483645, 0, -327682, 1073741839, 0, -327681, -1073741821, 0, -393216, 1610612754, 0, -393215, 536870927, 0, -393214, 1073741827, 0, -393213, -536870908, 0, -393212, -536870909, 0, -393210, -1073741810, 0, -262151, -1073741810, 0, -262149, -2147483634, 0, -262148, -2147483633, 0, -262147, 1073741842, 0, -262146, 536870930, 0, -262145, -1073741821, 0, -327680, -1610612718, 0, -327679, -2147483630, 0, -327678, 536870915, 0, -327677, -536870908, 0, -327676, -536870909, 0, -327674, -1073741810, 0, -196615, -1073741810, 0, -196613, -2147483637, 0, -196612, -536870897, 0, -196611, -2147483630, 0, -196610, -536870894, 0, -196609, -1073741806, 0, -262144, -1610612733, 0, -262143, -1073741821, 0, -262142, 1073741827, 0, -262141, 1073741827, 0, -262140, -536870894, 0, -262138, -1073741810, 0, -131079, -1073741810, 0, -131077, -2147483645, 0, -131076, -536870909, 0, -131075, -2147483645, 0, -131074, 1073741839, 0, -131073, 18, 0, -196608, -1610612733, 0, -196607, -1073741810, 0, -196606, 18, 0, -196605, 3, 0, -196604, 536870930, 0, -196602, -1073741810, 0, -65543, -1073741810, 0, -65541, -2147483645, 0, -65540, -536870909, 0, -65539, -1073741806, 0, -65538, 11, 0, -65537, 1610612739, 0, -131072, 1610612754, 0, -131071, -1610612725, 0, -131070, -1073741821, 0, -131069, 4, 0, -131068, -1610612733, 0, -131066, -1073741810, 0, -7, -1073741810, 0, -5, -536870898, 0, -4, -1073741821, 0, -3, 14, 0, -2, 3, 0, -1, 3, 0, -65536, 15, 0, -65535, -1073741806, 0, -65534, 1610612739, 0, -65533, 1610612754, 0, -65532, -1610612722, 0, -65530, -1073741810, 0, 65529, -1073741810, 0, 65531, -536870898, 0, 65532, -1610612721, 0, 65533, 1610612751, 0, 65534, 1073741828, 0, 65535, 1073741828, 0, 0, 1073741824, 0, 1, 14, 0, 2, 3, 0, 3, -1610612718, 0, 4, -536870898, 0, 6, -1073741810, 0, 131065, -1073741810, 0, 131067, 1073741842, 0, 131068, 536870926, 0, 131069, 536870926, 0, 131070, 1073741827, 0, 131071, 1073741827, 0, 65536, 1073741839, 0, 65537, 536870927, 0, 65538, 1073741827, 0, 65539, 1610612739, 0, 65540, 1610612754, 0, 65542, -1073741810, 0, 196586, -2147483641, 0, 196601, -1073741821, 0, 196602, -1610612718, 0, 131077, 18, 0, 131078, -1610612733, 0, 262137, -1610612720, 0, 262138, 1610612739, 0, 262139, 1610612750, 0, 262140, 1610612750, 0, 262141, 1610612750, 0, 262142, 1610612750, 0, 262143, 1610612750, 0, 196608, 1610612750, 0, 196609, 1610612750, 0, 196610, 1610612750, 0, 196611, 1610612750, 0, 196612, 1610612750, 0, 196613, 1610612739, 0, 196614, 16, 0 )
+
+[node name="Building01" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1416, 427 )
+rotation = 1.57079
+
+[node name="Building02" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building13" parent="Building01" instance=ExtResource( 3 )]
+position = Vector2( -2361.99, -2832.01 )
+rotation = -3.14159
+
+[node name="Building02" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building01/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building02" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1181, 664 )
+
+[node name="Building02" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building13" parent="Building02" instance=ExtResource( 3 )]
+position = Vector2( -2361.99, -2832.01 )
+rotation = -3.14159
+
+[node name="Building02" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building02/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building03" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1185, 1083 )
+rotation = 3.14159
+
+[node name="Building02" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building13" parent="Building03" instance=ExtResource( 3 )]
+position = Vector2( -2371.02, 3665.99 )
+rotation = -3.14159
+
+[node name="Building02" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building03/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building04" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1833, -1937 )
+rotation = 4.71238
+
+[node name="Building02" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )
+
+[node name="Building13" parent="Building04" instance=ExtResource( 3 )]
+position = Vector2( -2371.02, 3665.99 )
+rotation = -3.14159
+
+[node name="Building02" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -214, -0.000488281 )
+
+[node name="Building03" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -428, -0.000976563 )
+
+[node name="Building04" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -642, -0.00146484 )
+
+[node name="Building05" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -856, -0.00195313 )
+
+[node name="Building06" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1070, -0.00244141 )
+
+[node name="Building07" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1293, -0.00292969 )
+
+[node name="Building08" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1507, -0.00341797 )
+
+[node name="Building09" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1721, -0.00390625 )
+
+[node name="Building10" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -1935, -0.00427246 )
+
+[node name="Building11" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2149, -0.00476074 )
+
+[node name="Building12" parent="Building04/Building13" instance=ExtResource( 3 )]
+position = Vector2( -2363, -0.00524902 )

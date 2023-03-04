@@ -204,7 +204,9 @@ func _process(_delta : float) -> void:
 	$ControlAnchor/SpeedLabel.text = str(round(linear_velocity.length()))
 	$ControlAnchor.global_rotation = 0
 	if control_mode == ControlMode.ENABLED:
-		if Input.is_action_just_pressed("player"+str(player_id+1)+"_reset"):
+		var control_index := ControlManager.player_assignment(player_id)
+		var action_prefix := ControlManager.action_prefix(control_index)
+		if Input.is_action_just_pressed(action_prefix + "reset"):
 			if reset_position != null:
 				teleport(reset_position)
 
@@ -223,7 +225,8 @@ func _physics_process(delta : float) -> void:
 	var free_wheel := true
 	
 	if control_mode != ControlMode.DISABLED:
-		var action_prefix := "player" + str(player_id + 1) + "_"
+		var control_index := ControlManager.player_assignment(player_id)
+		var action_prefix := ControlManager.action_prefix(control_index)
 		# var action_boost := Input.get_action_strength(action_prefix + "boost") > 0
 		var action_forward := Input.get_action_strength(action_prefix + "up")
 		var action_backward := Input.get_action_strength(action_prefix + "down")

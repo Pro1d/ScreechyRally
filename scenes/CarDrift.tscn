@@ -139,7 +139,6 @@ bus = "Fx"
 [node name="ControlAnchor" type="Node2D" parent="."]
 position = Vector2( 26, 0 )
 z_index = 100
-z_as_relative = false
 
 [node name="SpeedLabel" type="Label" parent="ControlAnchor"]
 visible = false

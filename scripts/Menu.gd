@@ -34,10 +34,20 @@ func _ready():
 	for car in [$CarDrift, $CarDrift2]:
 		car.save_reset_position()
 		car.color = Global.player_colors[car.player_id]
+		car.rotation_degrees = rand_range(0, 360)
+		# Add control tooltip anchor to new canvas layer
+		var remote_anchor := Node2D.new()
+		$TooltipCanvasLayer.add_child(remote_anchor)
+		# Connect remote anchor to car's control anchor
+		var remote_transform := RemoteTransform2D.new()
+		car.get_control_anchor().add_child(remote_transform)
+		remote_transform.remote_path = remote_anchor.get_path()
+		remote_transform.use_global_coordinates = true
+		# Instantiate control tooltip as child of remote anchor
 		var control_tooltip := CarControlToolTip.instance()
-		car.get_control_anchor().add_child(control_tooltip)
-		control_tooltip.set_player_color(car.player_id)
-		control_tooltip.control_index = car.player_id
+		remote_anchor.add_child(control_tooltip)
+		control_tooltip.player_index = car.player_id
+		
 	
 	$ScreenFadeInOut.fade_in()
 

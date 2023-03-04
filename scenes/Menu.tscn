@@ -277,3 +277,5 @@ player_id = 0
 [node name="CarDrift2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 279, 580 )
 rotation = -0.349066
+
+[node name="TooltipCanvasLayer" type="CanvasLayer" parent="."]
