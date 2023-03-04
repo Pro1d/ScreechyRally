@@ -32,7 +32,7 @@ Required:
 - [x] Remove Boost
 - [x] Victory screen (scores & ranking)
 - [x] Ghost best record (for solo mode)
-- [ ] Control display / config
+- [x] Control display / config
 - [x] Sound volume
 - [ ] decorate all maps
 
