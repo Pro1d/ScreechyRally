@@ -25,6 +25,9 @@ func _ready():
 	_e = map_selection_play.connect("pressed", self, "_on_map_selection_play_pressed")
 	_e = get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 	
+	if OS.has_feature("HTML5"):
+		main_quit.hide()
+	
 	_on_viewport_size_changed()
 	_build_map_selection_list()
 	SoundUI.connect_buttons(self)
@@ -47,7 +50,6 @@ func _ready():
 		var control_tooltip := CarControlToolTip.instance()
 		remote_anchor.add_child(control_tooltip)
 		control_tooltip.player_index = car.player_id
-		
 	
 	$ScreenFadeInOut.fade_in()
 

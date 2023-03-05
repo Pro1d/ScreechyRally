@@ -63,7 +63,7 @@ Other:
 - [ ] Compare to best time / ghost in score screen
 - [x] Disable pause overlay when in score screen
 - [ ] Improve engine sound effect
-- [ ] Key mapping in main menu (displayed in a bubble above the car?)
+- [x] Key mapping in main menu (displayed in a bubble above the car?)
 - [ ] new road blocks
 - [ ] maps environment
 

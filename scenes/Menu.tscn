@@ -212,7 +212,7 @@ margin_top = 276.0
 margin_right = 519.0
 margin_bottom = 349.0
 size_flags_horizontal = 4
-text = "Multiplayer"
+text = "Two Players"
 
 [node name="MusicButton" type="CheckButton" parent="Main/VBoxContainer"]
 margin_left = 220.0
