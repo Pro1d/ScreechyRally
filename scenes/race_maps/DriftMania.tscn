@@ -40,7 +40,7 @@ rotation = -0.0133773
 scale = Vector2( 1.16802, 1.76097 )
 
 [node name="Bush12" parent="." instance=ExtResource( 5 )]
-modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+modulate = Color( 0.827451, 0.827451, 0.827451, 1 )
 position = Vector2( -1089, -1486 )
 rotation = -0.921452
 
@@ -187,7 +187,7 @@ rotation = -1.64519
 scale = Vector2( 1.12942, 1.12942 )
 
 [node name="Bush11" parent="." instance=ExtResource( 5 )]
-modulate = Color( 0.662745, 0.662745, 0.662745, 1 )
+modulate = Color( 0.827451, 0.827451, 0.827451, 1 )
 position = Vector2( -1325, -1032 )
 rotation = -2.95167
 
@@ -262,7 +262,6 @@ scale = Vector2( 1.12942, 1.12942 )
 [node name="Bush09" parent="Bush11" instance=ExtResource( 5 )]
 position = Vector2( 51.7328, 478.607 )
 rotation = -1.00116
-scale = Vector2( 1, 1 )
 
 [node name="Bush03" parent="Bush11/Bush09" instance=ExtResource( 5 )]
 position = Vector2( 79, 49 )
@@ -657,7 +656,6 @@ scale = Vector2( 1.12942, 1.12942 )
 [node name="Bush09" parent="Bush07" instance=ExtResource( 5 )]
 position = Vector2( 51.7328, 478.607 )
 rotation = -1.00116
-scale = Vector2( 1, 1 )
 
 [node name="Bush03" parent="Bush07/Bush09" instance=ExtResource( 5 )]
 position = Vector2( 79, 49 )
@@ -681,7 +679,6 @@ rotation = -0.255474
 modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
 position = Vector2( 234.246, 5.36914 )
 rotation = 2.23311
-scale = Vector2( 1, 1 )
 
 [node name="Bush03" parent="Bush10/Bush10" instance=ExtResource( 5 )]
 position = Vector2( 82.0002, 25.0002 )
@@ -768,7 +765,6 @@ scale = Vector2( 1.12942, 1.12942 )
 [node name="Bush09" parent="Bush10" instance=ExtResource( 5 )]
 position = Vector2( 550.837, -324.328 )
 rotation = -1.00116
-scale = Vector2( 1, 1 )
 
 [node name="Bush03" parent="Bush10/Bush09" instance=ExtResource( 5 )]
 position = Vector2( 47.2139, 70.8792 )
