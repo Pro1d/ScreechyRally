@@ -65,9 +65,10 @@ func _build_map_selection_list() -> void:
 	var maps_info : Dictionary = Global.maps_info
 	var maps_progression : Dictionary = Global.maps_progression
 	for scene_file in map_list:
-		var checkbox := model.duplicate()
+		var checkbox := model.duplicate() as CheckBox
 		checkbox.text = MapsList.map_file_to_map_name(scene_file)
 		var _e := checkbox.connect("pressed", Global, "set_race_map_scene_name", [scene_file])
+		_e = checkbox.connect("button_up", self, "_on_race_map_clicked", [scene_file])
 		map_selection_list.add_child(checkbox)
 		var info : MapsList.MapInfo = maps_info.get(scene_file)
 		var progression : MapsList.MapProgression = maps_progression.get(scene_file)
@@ -120,6 +121,20 @@ func _on_map_selection_play_pressed() -> void:
 		"change_scene_to_race",
 		[],
 		CONNECT_ONESHOT)
+
+var __last_scene_file_name_clicked := ""
+var __last_scene_file_name_clicked_time := 0.0
+const __double_click_delay := 0.3  # sec
+
+func _on_race_map_clicked(scene_file_name: String) -> void:
+	var time := Time.get_ticks_msec() / 1000.0
+	if (
+		scene_file_name == __last_scene_file_name_clicked and
+		time - __last_scene_file_name_clicked_time < __double_click_delay
+	):
+			_on_map_selection_play_pressed()
+	__last_scene_file_name_clicked = scene_file_name
+	__last_scene_file_name_clicked_time = time
 
 func _change_menu(menu : Control) -> void:
 	map_selection_menu.hide()
