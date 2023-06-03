@@ -18,6 +18,12 @@ const medal_colors := [
 	Color.gold,
 	Color.aqua,
 ]
+const medal_icon_colors := [
+	Color(0xa9844aff),
+	Color(0xbabbbdff),
+	Color(0xffe07dff),
+	Color(0x49cdf0ff),
+]
 
 var maps_info = null setget, _get_maps_info
 var maps_progression = null setget , _get_maps_progression

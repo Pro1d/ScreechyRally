@@ -326,6 +326,7 @@ visible = false
 visible = false
 
 [node name="ScreenFadeInOut" parent="." instance=ExtResource( 4 )]
+visible = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ScreenFadeInOut"]
 root_node = NodePath("../..")

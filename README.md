@@ -35,6 +35,7 @@ Required:
 - [x] Control display / config
 - [x] Sound volume
 - [ ] decorate all maps
+- [ ] Credits in menu
 
 Other:
 
@@ -59,13 +60,14 @@ Other:
   - [ ] best lap time ranking (game duration fixed)
 - [ ] Tournament mode, multiple maps and game mode
 - [x] Implement ~SceneManager~ Global.gd to gather scene changing code (start/restart race, quit to menu...)
-- [ ] Medal animation in score screen
-- [ ] Compare to best time / ghost in score screen
 - [x] Disable pause overlay when in score screen
 - [ ] Improve engine sound effect
 - [x] Key mapping in main menu (displayed in a bubble above the car?)
 - [ ] new road blocks
 - [ ] maps environment
+- [x] Medal animation in score screen
+- [ ] Compare to best time / ghost in score screen
+- [ ] Leaderboard: UI (menu + score screen, world top, around player), silentwolf, player_name (account?), notify new best time, display world ranking in score screen + button to send best time online
 
 ## Start Buzzer sound generation
 

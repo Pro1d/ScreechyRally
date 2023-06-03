@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Cooldown.gd"
 }, {
+"base": "Control",
+"class": "EndScoreOverlaay",
+"language": "GDScript",
+"path": "res://scripts/EndScoreOverlay.gd"
+}, {
 "base": "Node",
 "class": "GameViewports",
 "language": "GDScript",
@@ -58,6 +63,7 @@ _global_script_class_icons={
 "AutoGrass": "",
 "CarDrift": "",
 "Cooldown": "",
+"EndScoreOverlaay": "",
 "GameViewports": "",
 "HUD": "",
 "RaceMap": "",
@@ -84,6 +90,7 @@ CollisionLayers="*res://scripts/CollisionLayers.gd"
 
 settings/fps/force_fps=60
 gdscript/warnings/treat_warnings_as_errors=true
+gdscript/warnings/return_value_discarded=false
 gdscript/warnings/integer_division=false
 
 [display]
@@ -324,6 +331,7 @@ common/physics_jitter_fix=0.0
 common/enable_pause_aware_picking=true
 2d/default_gravity=0
 2d/default_linear_damp=1.0
+common/physics_interpolation=true
 
 [rendering]
 

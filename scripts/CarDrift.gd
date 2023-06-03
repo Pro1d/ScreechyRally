@@ -199,6 +199,7 @@ func _ready() -> void:
 	_set_engine_sound(0.0, true)
 	$DriftTrailEmitterLeft.world = get_parent()
 	$DriftTrailEmitterRight.world = get_parent()
+	$EngineSound.play(randf())
 
 func _process(_delta : float) -> void:
 	$ControlAnchor/SpeedLabel.text = str(round(linear_velocity.length()))

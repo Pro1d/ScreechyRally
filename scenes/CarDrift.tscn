@@ -133,7 +133,6 @@ bus = "Fx"
 
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
-autoplay = true
 bus = "Fx"
 
 [node name="ControlAnchor" type="Node2D" parent="."]

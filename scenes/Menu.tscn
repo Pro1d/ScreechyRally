@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -9.0 ]
+"values": [ -11.0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ -9.0, -40.0 ]
+"values": [ -11.0, -40.0 ]
 }
 
 [node name="Menu" type="Control"]
@@ -204,7 +204,7 @@ margin_top = 199.0
 margin_right = 552.0
 margin_bottom = 272.0
 size_flags_horizontal = 4
-text = "Single Player"
+text = "One Player"
 
 [node name="MultiButton" type="Button" parent="Main/VBoxContainer"]
 margin_left = 171.0
@@ -257,11 +257,12 @@ current = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -9.0
+volume_db = -11.0
 autoplay = true
 bus = "Music"
 
 [node name="ScreenFadeInOut" parent="." instance=ExtResource( 9 )]
+visible = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="ScreenFadeInOut"]
 root_node = NodePath("../..")

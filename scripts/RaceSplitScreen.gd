@@ -31,7 +31,7 @@ var viewports : Array
 var map : RaceMap
 var hud : HUD
 
-onready var end_score_overlay := $CanvasLayer/EndScoreOverlay
+onready var end_score_overlay := $CanvasLayer/EndScoreOverlay as EndScoreOverlaay
 onready var pause_overlay := $CanvasLayer/PauseOverlay
 onready var world := $World
 

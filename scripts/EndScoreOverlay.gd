@@ -1,3 +1,4 @@
+class_name EndScoreOverlaay
 extends Control
 
 var exit_to_menu_func : FuncRef
@@ -10,6 +11,7 @@ func _ready():
 	var container := $PanelContainer/MarginContainer/VBoxContainer
 	_e = container.get_node("RestartButton").connect("pressed", self, "_on_restart_pressed")
 	_e = container.get_node("ExitButton").connect("pressed", self, "_exit_to_menu")
+	SoundUI.connect_buttons(self)
 
 func _exit_to_menu() -> void:
 	if exit_to_menu_func != null:

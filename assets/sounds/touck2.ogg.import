@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/touck2.ogg-d2550af94d1df2567b981965b0411bd0.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/touck2.ogg"
+dest_files=[ "res://.import/touck2.ogg-d2550af94d1df2567b981965b0411bd0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

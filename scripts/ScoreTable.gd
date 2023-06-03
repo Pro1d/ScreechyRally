@@ -6,8 +6,10 @@ class PlayerData:
 	var player_name : String = "???"
 	var lap_times: Array = [0] # number of frame, 0=unknown
 	var rank : int # 0=unknown
-	var medals : = [false, false, false, false]
+	var medals := [false, false, false, false]
 	var show_author_medal := false
+	var new_best_time := false
+	var new_medals := [false, false, false, false]
 
 enum RowMask {
 	PLAYER_NAME = 1 << 0,
@@ -56,11 +58,36 @@ onready var _physics_fps : int = ProjectSettings.get_setting("physics/common/phy
 
 func _ready() -> void:
 	_update_row_visibility()
+	if false:
+		_set_player_count(2)
+		yield(get_tree().create_timer(1.0), "timeout")
+		var p1 := PlayerData.new()
+		p1.player_id = 0
+		p1.player_name = "PlayerOne"
+		p1.lap_times = [600, 768, 750]
+		p1.rank = 2
+		p1.medals = [true, true, true, true]
+		p1.new_medals = [false, false, true, true]
+		p1.show_author_medal = true
+		p1.new_best_time = false
+		set_player_data(p1)
+		p1 = PlayerData.new()
+		p1.player_id = 1
+		p1.player_name = "PlayerTwo"
+		p1.lap_times = [325, 453, 786]
+		p1.rank = 1
+		p1.medals = [true, false, false, false]
+		p1.new_medals = [false, false, false, false]
+		p1.show_author_medal = true
+		p1.new_best_time = false
+		set_player_data(p1)
 
 func set_player_data(data : PlayerData) -> void:
 	var table := $GridContainer
 	var row_index : int
 	var child_index : int
+	var tween := get_tree().create_tween()
+	tween.tween_interval(0.5)
 	
 	if "name":
 		row_index = _row_controls_ordering.find(_row_controls.name_empty)
@@ -79,6 +106,16 @@ func set_player_data(data : PlayerData) -> void:
 			var label : Label = template.duplicate()
 			label.text = _frames_to_string(t)
 			laps_vbox.add_child(label)
+			if row_mask & RowMask.LAP_TIMES:
+				label.rect_pivot_offset = label.rect_size / 2
+				label.modulate.a = 0.0
+				tween.tween_property(label, "modulate:a", 1.0, 0.0)
+				if data.player_id == 0:
+					tween.tween_callback($TickAudioStreamPlayer, "play")
+				tween.tween_property(label, "rect_scale", Vector2.ONE, 0.2) \
+					.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
+					.from(Vector2.ONE * 0.8)
+				tween.tween_interval(0.2)
 	
 	if "best lap":
 		row_index = _row_controls_ordering.find(_row_controls.best_lap_label)
@@ -89,6 +126,16 @@ func set_player_data(data : PlayerData) -> void:
 		var label : Label = _label_templates.normal.duplicate()
 		label.text = _frames_to_string(data.lap_times.min() if data.lap_times else -1)
 		box.add_child(label)
+		if row_mask & RowMask.BEST_LAP_TIME:
+			label.rect_pivot_offset = label.rect_size / 2
+			label.modulate.a = 0.0
+			tween.tween_property(label, "modulate:a", 1.0, 0.0)
+			if data.player_id == 0:
+				tween.tween_callback($TickAudioStreamPlayer, "play")
+			tween.tween_property(label, "rect_scale", Vector2.ONE, 0.2) \
+				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
+				.from(Vector2.ONE * 0.8)
+			tween.tween_interval(0.2)
 	
 	if "race time":
 		row_index = _row_controls_ordering.find(_row_controls.race_time_label)
@@ -102,12 +149,58 @@ func set_player_data(data : PlayerData) -> void:
 		var label : Label = _label_templates.normal.duplicate()
 		label.text = _frames_to_string(race_time if race_time else -1)
 		box.add_child(label)
+		if row_mask & RowMask.RACE_TIME:
+			label.rect_pivot_offset = label.rect_size / 2
+			label.modulate.a = 0.0
+			if data.new_best_time:
+				tween.tween_property(label, "rect_scale", Vector2.ONE, 1.0) \
+					.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
+					.from(Vector2.ONE * 2.5)
+				tween.parallel().tween_property(label, "modulate:a", 1.0, 1.0) \
+					.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO) \
+					.from(0.0)
+				tween.tween_callback($HitAudioStreamPlayer, "play")
+			else:
+				tween.tween_property(label, "modulate:a", 1.0, 0.0)
+				if data.player_id == 0:
+					tween.tween_callback($TickAudioStreamPlayer, "play")
+				tween.tween_property(label, "rect_scale", Vector2.ONE, 0.2) \
+					.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
+					.from(Vector2.ONE * 0.8)
+				tween.tween_interval(0.2)
 	
 	if "rank":
 		row_index = _row_controls_ordering.find(_row_controls.rank_label)
 		child_index = row_index * (player_count + 1) + (data.player_id + 1)
 		var rank_label : Label = table.get_child(child_index)
 		rank_label.text = str(data.rank) + ["st", "nd", "rd", "th"][min(data.rank - 1, 3)]
+		if row_mask & RowMask.RANK:
+			rank_label.rect_pivot_offset = rank_label.rect_size / 2
+			rank_label.modulate = (
+				Global.medal_icon_colors[3 - data.rank]
+				if 1 <= data.rank and data.rank <= 3
+				else Color.whitesmoke
+			)
+			rank_label.modulate.a = 0.0
+			var factor := 0.0
+			var delay := 0.0
+			for i in range(data.rank):
+				delay += factor * 1.0
+				factor = lerp(1.0, 0.5, pow(inverse_lerp(1, player_count, i + 1), 0.5))
+			var duration := factor * 1.0
+			var end_delay := 0.0
+			var factor2 := 0.0
+			for i in range(data.rank, player_count + 1):
+				end_delay += factor2 * 1.0
+				factor2 = lerp(1.0, 0.5, pow(inverse_lerp(1, player_count, i + 1), 0.5))
+			tween.tween_interval(delay)
+			tween.tween_property(rank_label, "rect_scale", Vector2.ONE, duration) \
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
+				.from(Vector2.ONE * factor * 5.0)
+			tween.parallel().tween_property(rank_label, "modulate:a", 1.0, duration) \
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+			tween.tween_callback($HitAudioStreamPlayer, "play")
+			tween.parallel().tween_interval(end_delay + 0.5)
 	
 	if "medals":
 		row_index = _row_controls_ordering.find(_row_controls.medals_label)
@@ -115,14 +208,37 @@ func set_player_data(data : PlayerData) -> void:
 		var box : Control = table.get_child(child_index)
 		for c in box.get_children():
 			box.remove_child(c)
-		_add_medals(box, data.medals, data.show_author_medal)
-
-func _add_medals(box : Container, completed : Array, show_author : bool) -> void:
-	for i in range(MapsList.MapInfo.Medal.COUNT):
-		var m := _medals_template.get_child(i).duplicate()
-		m.pressed = completed[i]
-		box.add_child(m)
-	box.get_child(MapsList.MapInfo.Medal.AUTHOR).visible = show_author
+		for i in range(MapsList.MapInfo.Medal.COUNT):
+			var m := _medals_template.get_child(i).duplicate() as CheckBox
+			m.rect_pivot_offset = m.rect_size / 2
+			m.pressed = data.medals[i]
+			box.add_child(m)
+			if row_mask & RowMask.MEDALS:
+				m.modulate.a = 0.0
+				if data.medals[i]:
+					tween.tween_property(m, "modulate:a", 1.0, 0.0)
+					if data.new_medals[i]:
+						tween.tween_property(m, "rect_scale", Vector2.ONE, 1.0) \
+							.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
+							.from(Vector2.ONE * 3.0)
+						tween.parallel().tween_property(m, "modulate:a", 1.0, 1.0) \
+							.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC) \
+							.from(0.0)
+						tween.tween_callback($TlingAudioStreamPlayer, "set_volume_db", [3.0])
+						tween.tween_callback($TlingAudioStreamPlayer, "set_pitch_scale", [1.0])
+						tween.tween_callback($TlingAudioStreamPlayer, "play", [0.035])
+						tween.parallel().tween_callback($HitAudioStreamPlayer, "play")
+					else:
+						tween.tween_callback($TlingAudioStreamPlayer, "set_volume_db", [-8.0])
+						tween.tween_callback($TlingAudioStreamPlayer, "set_pitch_scale", [0.8])
+						tween.tween_callback($TlingAudioStreamPlayer, "play", [0.000035])
+						tween.tween_property(m, "rect_scale", Vector2.ONE, 0.4) \
+							.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
+							.from(Vector2.ONE * 0.5)
+				else:
+					(tween if i == 0 else tween.parallel()).tween_property(m, "modulate:a", 1.0, 0.3).from(0.0)
+		box.get_child(MapsList.MapInfo.Medal.AUTHOR).visible = data.show_author_medal
+	tween.play()
 
 func _set_player_count(count : int) -> void:
 	assert(count > 0)
@@ -152,14 +268,18 @@ func _change_column_count(from : int, to : int) -> void:
 
 func _change_data_label_align(parent : Control, align : int) -> void:
 	for c in parent.get_children():
-		if (c as Label) != null and _row_controls_ordering.find(c) < 0:
+		if c is Label and _row_controls_ordering.find(c) < 0:
 			c.align = align
-		_change_data_label_align(c, align)
+		if c is Control:
+			_change_data_label_align(c, align)
 
 func _set_row_mask(mask : int) -> void:
 	if mask != row_mask:
 		row_mask = mask
 		_update_row_visibility()
+
+func _has_row(row_index: int) -> bool:
+	return (row_mask & (1 << row_index)) != 0
 
 func _update_row_visibility() -> void:
 	if _row_controls_ordering == null:
@@ -168,7 +288,7 @@ func _update_row_visibility() -> void:
 	var child_index := 0
 	for row_index in range(_row_controls_ordering.size()):
 		assert(table.get_child(child_index) == _row_controls_ordering[row_index])
-		var row_visible : bool = (row_mask & (1 << row_index)) != 0
+		var row_visible : bool = _has_row(row_index)
 		for _i in range(player_count + 1):
 			table.get_child(child_index).visible = row_visible
 			child_index += 1
