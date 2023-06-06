@@ -14,22 +14,20 @@ class Record:
 		r.duration = d.duration
 		return r
 
-static func _get_records_location() -> String:
-	return "res://records/" if OS.has_feature("editor") else "user://records"
 const separator := "_"
 const extension := ".record"
 
 static func generate_record_path(race_map_scene_name : String) -> String:
 	var date := Time.get_datetime_string_from_system(true).replace(":","-").replace("T","-")
 	var map_name := race_map_scene_name.get_file().get_basename()
-	return _get_records_location() + map_name + separator + date + extension
+	return Config.get_records_location() + map_name + separator + date + extension
 
 static func get_all_record_paths(race_map_scene_name : String) -> Array:
 	var map_name := race_map_scene_name.get_file().get_basename()
 	var prefix := map_name + separator
 	var dir := Directory.new()
 	var record_paths := []
-	if dir.open(_get_records_location()) == OK:
+	if dir.open(Config.get_records_location()) == OK:
 		var _e := dir.list_dir_begin()
 		var file_name := dir.get_next()
 		while file_name != "":

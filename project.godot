@@ -80,6 +80,8 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+Config="*res://scripts/Config.gd"
 ControlManager="*res://scripts/control_manager.gd"
 Global="*res://scripts/global.gd"
 MapsList="*res://scripts/maps_list.gd"
@@ -97,7 +99,6 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1366
 window/size/height=768
-window/size/fullscreen=true
 window/stretch/aspect="keep_height"
 
 [gui]

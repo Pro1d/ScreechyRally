@@ -31,6 +31,8 @@ var race_map_scene_name := "res://scenes/RaceMap.tscn"
 var player_count := 1
 var game_mode : int = GameMode.UNDEFINED
 
+onready var _physics_fps : int = ProjectSettings.get_setting("physics/common/physics_fps")
+
 func set_race_map_scene_name(path : String) -> void:
 	race_map_scene_name = path
 
@@ -68,3 +70,11 @@ func update_map_progression(map_path : String, record_path : String) -> void:
 		progression.best_record.duration = duration
 		progression.best_record.path = record_path
 		var _e = MapsList.save_maps_progression(mp)
+
+func frames_to_string(frames : int) -> String:
+	if frames < 0:
+		return "-:--.--"
+	var centis := (frames % _physics_fps) * 100 / _physics_fps
+	var seconds := (frames / _physics_fps) % 60
+	var minutes := (frames / _physics_fps) / 60
+	return "%d:%02d.%02d" % [minutes, seconds, centis]

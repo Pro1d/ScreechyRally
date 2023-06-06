@@ -10,9 +10,11 @@ onready var main_play_multi := $Main/VBoxContainer/MultiButton
 onready var main_music := $Main/VBoxContainer/MusicButton
 onready var main_quit := $Main/VBoxContainer/QuitButton
 onready var map_selection_menu := $MapSelection
-onready var map_selection_list := $MapSelection/ScrollContainer/CenterContainer/GridContainer
+onready var map_selection_list := $MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer
 onready var map_selection_play := $MapSelection/VBoxContainer/PlayButton
+onready var map_selection_ranking := $MapSelection/VBoxContainer/RankingButton
 onready var map_selection_back := $MapSelection/VBoxContainer/BackButton
+onready var leaderboard_overlay := $LeaderboardOverlay
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +24,9 @@ func _ready():
 	_e = main_music.connect("pressed", SoundUI, "switch_music", [main_music])
 	_e = main_quit.connect("pressed", self, "_on_main_quit_pressed")
 	_e = map_selection_back.connect("pressed", self, "_on_map_selection_back_pressed")
+	if Config.has_leaderboard():
+		_e = map_selection_ranking.connect("pressed", self, "_on_map_selection_ranking_pressed")
+		map_selection_ranking.show()
 	_e = map_selection_play.connect("pressed", self, "_on_map_selection_play_pressed")
 	_e = get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 	
@@ -112,6 +117,11 @@ func _on_main_quit_pressed() -> void:
 
 func _on_map_selection_back_pressed() -> void:
 	_change_menu(main_menu)
+
+func _on_map_selection_ranking_pressed() -> void:
+	var map_name := MapsList.map_file_to_map_name(Global.race_map_scene_name)
+	leaderboard_overlay.load_leaderboard(map_name)
+	leaderboard_overlay.show()
 
 func _on_map_selection_play_pressed() -> void:
 	$ScreenFadeInOut.fade_out()

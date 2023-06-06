@@ -53,7 +53,6 @@ onready var _row_controls_ordering := [
 	_row_controls.rank_label,
 	_row_controls.medals_label,
 ]
-onready var _physics_fps : int = ProjectSettings.get_setting("physics/common/physics_fps")
 
 
 func _ready() -> void:
@@ -104,7 +103,7 @@ func set_player_data(data : PlayerData) -> void:
 		for t in data.lap_times:
 			var template : Label = _label_templates.local_best if t == data.lap_times.min() else _label_templates.normal
 			var label : Label = template.duplicate()
-			label.text = _frames_to_string(t)
+			label.text = Global.frames_to_string(t)
 			laps_vbox.add_child(label)
 			if row_mask & RowMask.LAP_TIMES:
 				label.rect_pivot_offset = label.rect_size / 2
@@ -124,7 +123,7 @@ func set_player_data(data : PlayerData) -> void:
 		for c in box.get_children():
 			box.remove_child(c)
 		var label : Label = _label_templates.normal.duplicate()
-		label.text = _frames_to_string(data.lap_times.min() if data.lap_times else -1)
+		label.text = Global.frames_to_string(data.lap_times.min() if data.lap_times else -1)
 		box.add_child(label)
 		if row_mask & RowMask.BEST_LAP_TIME:
 			label.rect_pivot_offset = label.rect_size / 2
@@ -147,7 +146,7 @@ func set_player_data(data : PlayerData) -> void:
 		for t in data.lap_times:
 			race_time += t
 		var label : Label = _label_templates.normal.duplicate()
-		label.text = _frames_to_string(race_time if race_time else -1)
+		label.text = Global.frames_to_string(race_time if race_time else -1)
 		box.add_child(label)
 		if row_mask & RowMask.RACE_TIME:
 			label.rect_pivot_offset = label.rect_size / 2
@@ -292,11 +291,3 @@ func _update_row_visibility() -> void:
 		for _i in range(player_count + 1):
 			table.get_child(child_index).visible = row_visible
 			child_index += 1
-
-func _frames_to_string(frames : int) -> String:
-	if frames < 0:
-		return "-:--.--"
-	var centis := (frames % _physics_fps) * 100 / _physics_fps
-	var seconds := (frames / _physics_fps) % 60
-	var minutes := (frames / _physics_fps) / 60
-	return "%d:%02d.%02d" % [minutes, seconds, centis]
