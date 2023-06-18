@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/HUD.gd"
 }, {
+"base": "HBoxContainer",
+"class": "LoadingAnimation",
+"language": "GDScript",
+"path": "res://scripts/LoadingAnimation.gd"
+}, {
 "base": "Node2D",
 "class": "RaceMap",
 "language": "GDScript",
@@ -47,7 +52,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "RecordDataBase",
 "language": "GDScript",
-"path": "res://scripts/RecordDataBase.gd"
+"path": "res://scripts/singleton/RecordDataBase.gd"
 }, {
 "base": "CenterContainer",
 "class": "ScoreTable",
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "EndScoreOverlaay": "",
 "GameViewports": "",
 "HUD": "",
+"LoadingAnimation": "",
 "RaceMap": "",
 "RecordDataBase": "",
 "ScoreTable": "",
@@ -81,12 +87,13 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
-Config="*res://scripts/Config.gd"
-ControlManager="*res://scripts/control_manager.gd"
-Global="*res://scripts/global.gd"
-MapsList="*res://scripts/maps_list.gd"
-SoundUI="*res://scripts/SoundUI.gd"
+Config="*res://scripts/singleton/Config.gd"
+ControlManager="*res://scripts/singleton/control_manager.gd"
+Global="*res://scripts/singleton/global.gd"
+MapsList="*res://scripts/singleton/maps_list.gd"
+SoundUI="*res://scripts/singleton/SoundUI.gd"
 CollisionLayers="*res://scripts/CollisionLayers.gd"
+SWLeaderboard="*res://scripts/singleton/SWLeaderboard.gd"
 
 [debug]
 

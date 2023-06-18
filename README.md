@@ -68,6 +68,7 @@ Other:
 - [x] Medal animation in score screen
 - [ ] Compare to best time / ghost in score screen
 - [ ] Leaderboard: UI (menu + score screen, world top, around player), silentwolf, player_name (account?), notify new best time, display world ranking in score screen + button to send best time online
+- [ ] show not show empty author medal in menu (show only if completed)
 
 ## Start Buzzer sound generation
 

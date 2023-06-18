@@ -52,23 +52,29 @@ rect_min_size = Vector2( 200, 0 )
 text = "test"
 placeholder_text = "leaderboard name"
 
-[node name="AddScoreButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="SubmitButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 370.0
-margin_right = 446.0
+margin_right = 466.0
+margin_bottom = 24.0
+text = "Submit Score"
+
+[node name="AddScoreButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 470.0
+margin_right = 546.0
 margin_bottom = 24.0
 text = "Add Score"
 
 [node name="PlayerEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 450.0
-margin_right = 650.0
+margin_left = 550.0
+margin_right = 750.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
 text = "John"
 placeholder_text = "player name"
 
 [node name="TimeSpinBox" type="SpinBox" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 654.0
-margin_right = 774.0
+margin_left = 754.0
+margin_right = 874.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
 hint_tooltip = "Time"
@@ -76,10 +82,24 @@ max_value = 3600.0
 suffix = "frames"
 
 [node name="RandomButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 778.0
-margin_right = 861.0
+margin_left = 878.0
+margin_right = 961.0
 margin_bottom = 24.0
 text = "Randomize"
+
+[node name="ConfigDumpButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 965.0
+margin_right = 1059.0
+margin_bottom = 24.0
+text = "Dump Config"
+
+[node name="ConfigDeleteButton" type="MenuButton" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 1063.0
+margin_right = 1173.0
+margin_bottom = 24.0
+focus_mode = 2
+text = "Delete Config..."
+items = [ "WARNING! Not undoable! Confirm?", null, 0, false, false, 0, 0, null, "", false ]
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 33.0

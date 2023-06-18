@@ -24,9 +24,7 @@ func _ready():
 	_e = main_music.connect("pressed", SoundUI, "switch_music", [main_music])
 	_e = main_quit.connect("pressed", self, "_on_main_quit_pressed")
 	_e = map_selection_back.connect("pressed", self, "_on_map_selection_back_pressed")
-	if Config.has_leaderboard():
-		_e = map_selection_ranking.connect("pressed", self, "_on_map_selection_ranking_pressed")
-		map_selection_ranking.show()
+	_e = map_selection_ranking.connect("pressed", self, "_on_map_selection_ranking_pressed")
 	_e = map_selection_play.connect("pressed", self, "_on_map_selection_play_pressed")
 	_e = get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 	
@@ -104,10 +102,12 @@ func _on_viewport_size_changed() -> void:
 
 func _on_main_play_single_pressed() -> void:
 	Global.player_count = 1
+	map_selection_ranking.visible = Config.has_leaderboard()
 	_change_menu(map_selection_menu)
 
 func _on_main_play_multi_pressed() -> void:
 	Global.player_count = 2
+	map_selection_ranking.visible = false
 	_change_menu(map_selection_menu)
 
 func _on_main_quit_pressed() -> void:
