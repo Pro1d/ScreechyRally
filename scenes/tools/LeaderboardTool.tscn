@@ -64,17 +64,23 @@ margin_right = 546.0
 margin_bottom = 24.0
 text = "Add Score"
 
-[node name="PlayerEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="ScorePositionButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 margin_left = 550.0
-margin_right = 750.0
+margin_right = 641.0
+margin_bottom = 24.0
+text = "Get Position"
+
+[node name="PlayerEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 645.0
+margin_right = 845.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
 text = "John"
 placeholder_text = "player name"
 
 [node name="TimeSpinBox" type="SpinBox" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 754.0
-margin_right = 874.0
+margin_left = 849.0
+margin_right = 969.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
 hint_tooltip = "Time"
@@ -82,20 +88,20 @@ max_value = 3600.0
 suffix = "frames"
 
 [node name="RandomButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 878.0
-margin_right = 961.0
+margin_left = 973.0
+margin_right = 1056.0
 margin_bottom = 24.0
 text = "Randomize"
 
 [node name="ConfigDumpButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 965.0
-margin_right = 1059.0
+margin_left = 1060.0
+margin_right = 1154.0
 margin_bottom = 24.0
 text = "Dump Config"
 
 [node name="ConfigDeleteButton" type="MenuButton" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 1063.0
-margin_right = 1173.0
+margin_left = 1158.0
+margin_right = 1268.0
 margin_bottom = 24.0
 focus_mode = 2
 text = "Delete Config..."

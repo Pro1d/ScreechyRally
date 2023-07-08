@@ -10,6 +10,7 @@ func _ready():
 	$VBoxContainer/MarginContainer/HBoxContainer/ShowButton.connect("pressed", self, "_on_show_pressed")
 	$VBoxContainer/MarginContainer/HBoxContainer/SubmitButton.connect("pressed", self, "_on_submit_score")
 	$VBoxContainer/MarginContainer/HBoxContainer/AddScoreButton.connect("pressed", self, "_on_add_score")
+	$VBoxContainer/MarginContainer/HBoxContainer/ScorePositionButton.connect("pressed", self, "_on_get_score_position_pressed")
 	$VBoxContainer/MarginContainer/HBoxContainer/DumpButton.connect("pressed", self, "_on_dump_pressed")
 	$VBoxContainer/MarginContainer/HBoxContainer/RandomButton.connect("pressed", self, "_on_randomize_pressed")
 	$VBoxContainer/MarginContainer/HBoxContainer/ConfigDumpButton.connect("pressed", self, "_on_config_dump_pressed")
@@ -19,6 +20,8 @@ func _ready():
 	SilentWolf.Scores.connect("sw_score_deleted", self, "_on_score_deleted")
 	SilentWolf.Scores.connect("sw_scores_received", self, "_on_scores_received")
 	SilentWolf.Scores.connect("sw_leaderboard_wiped", self, "_on_wipe_finished")
+	SilentWolf.Scores.connect("sw_position_received", self, "_on_score_position_received")
+	randomize()
 
 func _on_show_pressed() -> void:
 	var map_name := leaderboard_line_edit.text
@@ -77,6 +80,14 @@ func _on_config_delete_pressed(_id: int) -> void:
 
 func _on_wipe_finished() -> void:
 	print_log(["Wipe successful"])
+
+func _on_get_score_position_pressed() -> void:
+	var ld_name := SWLeaderboard.leaderboard_name_from_map_name(leaderboard_line_edit.text)
+	var time := int(time_spin_box.value)
+	SilentWolf.Scores.get_score_position(-time, ld_name)
+
+func _on_score_position_received(position: int) -> void:
+	print_log(["Received score position: ", position])
 
 func print_log(array : Array, endl : bool = true) -> void:
 	var string := ""

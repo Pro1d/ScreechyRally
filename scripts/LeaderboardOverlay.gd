@@ -26,7 +26,6 @@ func _ready() -> void:
 	SilentWolf.Scores.connect("sw_scores_received", self, "_on_scores_received")
 	SilentWolf.Scores.connect("sw_score_posted", self, "_on_score_posted")
 	SilentWolf.Scores.connect("sw_score_deleted", self, "_on_score_deleted")
-	randomize()
 
 func _exit_tree():
 	_abort_loading()
