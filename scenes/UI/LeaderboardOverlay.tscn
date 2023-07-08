@@ -231,7 +231,7 @@ alignment = 1
 
 [node name="RankingScroll" type="ScrollContainer" parent="VCenter/HCenter/PanelContainer/PanelLayout/ContentMargin/ContentLayout/Container"]
 visible = false
-margin_right = 614.0
+margin_right = 15.0
 margin_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -239,14 +239,13 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="RankingMargin" type="MarginContainer" parent="VCenter/HCenter/PanelContainer/PanelLayout/ContentMargin/ContentLayout/Container/RankingScroll"]
-margin_right = 614.0
+margin_right = 15.0
 size_flags_horizontal = 3
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
 [node name="RankingList" type="VBoxContainer" parent="VCenter/HCenter/PanelContainer/PanelLayout/ContentMargin/ContentLayout/Container/RankingScroll/RankingMargin"]
-margin_right = 599.0
 size_flags_horizontal = 3
 
 [node name="EmptyLeaderboardLabel" type="Label" parent="VCenter/HCenter/PanelContainer/PanelLayout/ContentMargin/ContentLayout/Container"]
@@ -259,7 +258,7 @@ text = "No entry"
 align = 1
 
 [node name="SubmissionPreview" type="HBoxContainer" parent="VCenter/HCenter/PanelContainer/PanelLayout/ContentMargin/ContentLayout/Container"]
-modulate = Color( 0.5088, 0.75696, 0.96, 1 )
+modulate = Color( 0.509804, 0.756863, 0.960784, 1 )
 margin_top = 176.0
 margin_right = 614.0
 margin_bottom = 237.0

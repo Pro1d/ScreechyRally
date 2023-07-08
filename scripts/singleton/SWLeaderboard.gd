@@ -40,13 +40,22 @@ func save_player_name(pn: String):
 func get_player_name() -> String:
 	return _leaderboard_config.get_value("player", "name", "")
 
+func leaderboard_name_from_map_name(map_name: String) -> String:
+	return map_name.replace(' ', '_')
+
 func save_leaderboard_submission(leaderboard_name: String, submission: Dictionary) -> void:
-	if get_leaderboard_submission(leaderboard_name).score_id != submission.score_id:
-		_leaderboard_config.set_value("leaderboard", leaderboard_name, submission)
-		_save_leaderboard_config()
+	if (
+		not has_leaderboard_submission(leaderboard_name)
+		or get_leaderboard_submission(leaderboard_name).score_id != submission.score_id
+	):
+			_leaderboard_config.set_value("leaderboard", leaderboard_name, submission)
+			_save_leaderboard_config()
 
 func get_leaderboard_submission(leaderboard_name: String) -> Dictionary:
-	return _leaderboard_config.get_value("leaderboard", leaderboard_name, {"score_id": ""})
+	return _leaderboard_config.get_value("leaderboard", leaderboard_name)
+
+func has_leaderboard_submission(leaderboard_name: String) -> bool:
+	return _leaderboard_config.has_section_key("leaderboard", leaderboard_name)
 
 func make_leaderboard_submission(score_id: String, time: int) -> Dictionary:
 	return {"score_id": score_id, "time": time}

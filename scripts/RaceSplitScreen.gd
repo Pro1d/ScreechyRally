@@ -9,7 +9,7 @@ class CheckpointState:
 		done.fill(false)
 
 const CarDrift = preload("res://scenes/CarDrift.tscn")
-const RecordDataBase = preload("res://scripts/RecordDataBase.gd")
+const RecordDataBase = preload("res://scripts/singleton/RecordDataBase.gd")
 
 signal scores_changed(scores)
 signal checkpoints_changed(current, total)
@@ -124,6 +124,7 @@ func _ready():
 			end_score_overlay.score_table.row_mask = ScoreTable.RowMask.LAP_TIMES
 			end_score_overlay.score_table.row_mask |= ScoreTable.RowMask.RACE_TIME
 			end_score_overlay.score_table.row_mask |= ScoreTable.RowMask.MEDALS
+			end_score_overlay.score_table.row_mask |= ScoreTable.RowMask.LEADERBOARD
 		_:
 			end_score_overlay.score_table.row_mask = ScoreTable.RowMask.PLAYER_NAME
 			end_score_overlay.score_table.row_mask |= ScoreTable.RowMask.BEST_LAP_TIME
@@ -215,6 +216,7 @@ func end_race() -> void:
 			rank = ranks[times[r - 1].player_id]
 		ranks[times[r].player_id] = rank + 1
 	
+	var map_name := MapsList.map_file_to_map_name(Global.race_map_scene_name)
 	
 	for player_id in range(Global.player_count):
 		var data := ScoreTable.PlayerData.new()
@@ -234,7 +236,7 @@ func end_race() -> void:
 			if info != null and progression != null:
 				data.medals = info.medals_completed(progression)
 				data.show_author_medal = data.medals[MapsList.MapInfo.Medal.AUTHOR]
-		end_score_overlay.score_table.set_player_data(data)
+		end_score_overlay.score_table.set_player_data(data, map_name)
 	
 	pause_overlay.allow_pause = false
 	end_score_overlay.show()

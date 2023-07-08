@@ -21,17 +21,17 @@ func _ready():
 	SilentWolf.Scores.connect("sw_leaderboard_wiped", self, "_on_wipe_finished")
 
 func _on_show_pressed() -> void:
-	var ld_name := leaderboard_line_edit.text
-	$LeaderboardOverlay.load_leaderboard(ld_name)
+	var map_name := leaderboard_line_edit.text
+	$LeaderboardOverlay.load_leaderboard(map_name)
 	$LeaderboardOverlay.show()
 
 func _on_dump_pressed() -> void:
-	var ld_name := leaderboard_line_edit.text
+	var ld_name := SWLeaderboard.leaderboard_name_from_map_name(leaderboard_line_edit.text)
 	print_log(["Loading: ", ld_name])
 	SilentWolf.Scores.get_high_scores(0, ld_name)
 
 func _on_add_score() -> void:
-	var ld_name := leaderboard_line_edit.text
+	var ld_name := SWLeaderboard.leaderboard_name_from_map_name(leaderboard_line_edit.text)
 	var p_name := player_line_edit.text
 	var time := int(time_spin_box.value)
 	var score := -time
@@ -39,9 +39,9 @@ func _on_add_score() -> void:
 	SilentWolf.Scores.persist_score(p_name, score, ld_name)
 
 func _on_submit_score() -> void:
-	var ld_name := leaderboard_line_edit.text
+	var map_name := leaderboard_line_edit.text
 	var time := int(time_spin_box.value)
-	$LeaderboardOverlay.submit_to_leaderboard(ld_name, time, -1)
+	$LeaderboardOverlay.submit_to_leaderboard(map_name, time, -1)
 	$LeaderboardOverlay.show()
 
 func _on_score_posted(score_id=null) -> void:
@@ -61,18 +61,18 @@ func _on_randomize_pressed() -> void:
 
 func _on_config_dump_pressed() -> void:
 	print_log(["leaderboard config dump:"])
-	for section in Config._leaderboard_config.get_sections():
+	for section in SWLeaderboard._leaderboard_config.get_sections():
 		print_log(["[", section, "]"])
-		for key in Config._leaderboard_config.get_section_keys(section):
-			print_log([key, "=", Config._leaderboard_config.get_value(section, key)])
+		for key in SWLeaderboard._leaderboard_config.get_section_keys(section):
+			print_log([key, "=", SWLeaderboard._leaderboard_config.get_value(section, key)])
 
 func _on_clear_pressed(_id: int) -> void:
-	var ld_name := leaderboard_line_edit.text
+	var ld_name := SWLeaderboard.leaderboard_name_from_map_name(leaderboard_line_edit.text)
 	print_log(["Wipe: ", ld_name])
 	SilentWolf.Scores.wipe_leaderboard(ld_name)
 
 func _on_config_delete_pressed(_id: int) -> void:
-	Config.clear_leader_board_config()
+	SWLeaderboard.clear_leader_board_config()
 	print_log(["Deleted leaderboard config"])
 
 func _on_wipe_finished() -> void:

@@ -1,6 +1,10 @@
 class_name ScoreTable
 extends CenterContainer
 
+# warning-ignore:unused_signal
+signal submit(time, rank)
+
+
 class PlayerData:
 	var player_id : int = 0
 	var player_name : String = "???"
@@ -18,9 +22,10 @@ enum RowMask {
 	RACE_TIME = 1 << 3,
 	RANK = 1 << 4,
 	MEDALS = 1 << 5,
+	LEADERBOARD = 1 << 6,
 }
 
-export(int, FLAGS, "player name", "lap times", "best lap time", "race time", "rank", "medals") var row_mask := 0xffff setget _set_row_mask
+export(int, FLAGS, "player name", "lap times", "best lap time", "race time", "rank", "medals", "leaderboard") var row_mask := 0xffff setget _set_row_mask
 export(int) var player_count := 1 setget _set_player_count
 
 onready var _label_templates := {
@@ -36,6 +41,7 @@ onready var _data_control_templates := {
 	race_time_box = $GridContainer/DataRaceTimeBox,
 	rank_label = $GridContainer/DataRankLabel,
 	medals_box = $GridContainer/DataMedalsBox,
+	leaderboard_container = $GridContainer/DataLeaderboardBox,
 }
 onready var _row_controls := {
 	name_empty = $GridContainer/RowNameEmpty,
@@ -44,6 +50,7 @@ onready var _row_controls := {
 	race_time_label = $GridContainer/RowRaceTimeLabel,
 	rank_label = $GridContainer/RowRankLabel,
 	medals_label = $GridContainer/RowMedalsLabel,
+	leaderboard_label = $GridContainer/RowLeaderboardLabel,
 }
 onready var _row_controls_ordering := [
 	_row_controls.name_empty,
@@ -52,8 +59,8 @@ onready var _row_controls_ordering := [
 	_row_controls.race_time_label,
 	_row_controls.rank_label,
 	_row_controls.medals_label,
+	_row_controls.leaderboard_label,
 ]
-
 
 func _ready() -> void:
 	_update_row_visibility()
@@ -69,7 +76,7 @@ func _ready() -> void:
 		p1.new_medals = [false, false, true, true]
 		p1.show_author_medal = true
 		p1.new_best_time = false
-		set_player_data(p1)
+		set_player_data(p1, "test")
 		p1 = PlayerData.new()
 		p1.player_id = 1
 		p1.player_name = "PlayerTwo"
@@ -79,14 +86,18 @@ func _ready() -> void:
 		p1.new_medals = [false, false, false, false]
 		p1.show_author_medal = true
 		p1.new_best_time = false
-		set_player_data(p1)
+		set_player_data(p1, "test")
 
-func set_player_data(data : PlayerData) -> void:
+func set_player_data(data : PlayerData, map_name: String) -> void:
+	# Fill table with data + setup animation
 	var table := $GridContainer
 	var row_index : int
 	var child_index : int
 	var tween := get_tree().create_tween()
 	tween.tween_interval(0.5)
+	var race_time := 0
+	for t in data.lap_times:
+		race_time += t
 	
 	if "name":
 		row_index = _row_controls_ordering.find(_row_controls.name_empty)
@@ -106,11 +117,11 @@ func set_player_data(data : PlayerData) -> void:
 			label.text = Global.frames_to_string(t)
 			laps_vbox.add_child(label)
 			if row_mask & RowMask.LAP_TIMES:
-				label.rect_pivot_offset = label.rect_size / 2
 				label.modulate.a = 0.0
 				tween.tween_property(label, "modulate:a", 1.0, 0.0)
 				if data.player_id == 0:
 					tween.tween_callback($TickAudioStreamPlayer, "play")
+				tween.tween_callback(self, "_set_rect_pivot_offset", [label])
 				tween.tween_property(label, "rect_scale", Vector2.ONE, 0.2) \
 					.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
 					.from(Vector2.ONE * 0.8)
@@ -126,11 +137,11 @@ func set_player_data(data : PlayerData) -> void:
 		label.text = Global.frames_to_string(data.lap_times.min() if data.lap_times else -1)
 		box.add_child(label)
 		if row_mask & RowMask.BEST_LAP_TIME:
-			label.rect_pivot_offset = label.rect_size / 2
 			label.modulate.a = 0.0
 			tween.tween_property(label, "modulate:a", 1.0, 0.0)
 			if data.player_id == 0:
 				tween.tween_callback($TickAudioStreamPlayer, "play")
+			tween.tween_callback(self, "_set_rect_pivot_offset", [label])
 			tween.tween_property(label, "rect_scale", Vector2.ONE, 0.2) \
 				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK) \
 				.from(Vector2.ONE * 0.8)
@@ -142,15 +153,12 @@ func set_player_data(data : PlayerData) -> void:
 		var box : Control = table.get_child(child_index)
 		for c in box.get_children():
 			box.remove_child(c)
-		var race_time := 0
-		for t in data.lap_times:
-			race_time += t
 		var label : Label = _label_templates.normal.duplicate()
 		label.text = Global.frames_to_string(race_time if race_time else -1)
 		box.add_child(label)
 		if row_mask & RowMask.RACE_TIME:
-			label.rect_pivot_offset = label.rect_size / 2
 			label.modulate.a = 0.0
+			tween.tween_callback(self, "_set_rect_pivot_offset", [label])
 			if data.new_best_time:
 				tween.tween_property(label, "rect_scale", Vector2.ONE, 1.0) \
 					.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
@@ -172,7 +180,7 @@ func set_player_data(data : PlayerData) -> void:
 		row_index = _row_controls_ordering.find(_row_controls.rank_label)
 		child_index = row_index * (player_count + 1) + (data.player_id + 1)
 		var rank_label : Label = table.get_child(child_index)
-		rank_label.text = str(data.rank) + ["st", "nd", "rd", "th"][min(data.rank - 1, 3)]
+		rank_label.text = _rank_to_string(data.rank)
 		if row_mask & RowMask.RANK:
 			rank_label.rect_pivot_offset = rank_label.rect_size / 2
 			rank_label.modulate = (
@@ -193,6 +201,7 @@ func set_player_data(data : PlayerData) -> void:
 				end_delay += factor2 * 1.0
 				factor2 = lerp(1.0, 0.5, pow(inverse_lerp(1, player_count, i + 1), 0.5))
 			tween.tween_interval(delay)
+			tween.tween_callback(self, "_set_rect_pivot_offset", [rank_label])
 			tween.tween_property(rank_label, "rect_scale", Vector2.ONE, duration) \
 				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
 				.from(Vector2.ONE * factor * 5.0)
@@ -209,13 +218,13 @@ func set_player_data(data : PlayerData) -> void:
 			box.remove_child(c)
 		for i in range(MapsList.MapInfo.Medal.COUNT):
 			var m := _medals_template.get_child(i).duplicate() as CheckBox
-			m.rect_pivot_offset = m.rect_size / 2
 			m.pressed = data.medals[i]
 			box.add_child(m)
 			if row_mask & RowMask.MEDALS:
 				m.modulate.a = 0.0
 				if data.medals[i]:
 					tween.tween_property(m, "modulate:a", 1.0, 0.0)
+					tween.tween_callback(self, "_set_rect_pivot_offset", [m])
 					if data.new_medals[i]:
 						tween.tween_property(m, "rect_scale", Vector2.ONE, 1.0) \
 							.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC) \
@@ -237,7 +246,22 @@ func set_player_data(data : PlayerData) -> void:
 				else:
 					(tween if i == 0 else tween.parallel()).tween_property(m, "modulate:a", 1.0, 0.3).from(0.0)
 		box.get_child(MapsList.MapInfo.Medal.AUTHOR).visible = data.show_author_medal
+	
+	if "leaderboard":
+		row_index = _row_controls_ordering.find(_row_controls.leaderboard_label)
+		child_index = row_index * (player_count + 1) + (data.player_id + 1)
+		var box : Control = table.get_child(child_index)
+		box.get_child(1).visible = false
+		if row_mask & RowMask.LEADERBOARD:
+			_leaderboard_loading_row(box, race_time, map_name)
+			box.modulate.a = 0.0
+			tween.tween_property(box, "modulate:a", 1.0, 0.0)
+			tween.parallel().tween_property(box.get_child(0), "playing", true, 0.1)
+	
 	tween.play()
+
+func _set_rect_pivot_offset(control: Control) -> void:
+	control.rect_pivot_offset = control.rect_size / 2
 
 func _set_player_count(count : int) -> void:
 	assert(count > 0)
@@ -291,3 +315,51 @@ func _update_row_visibility() -> void:
 		for _i in range(player_count + 1):
 			table.get_child(child_index).visible = row_visible
 			child_index += 1
+
+func _leaderboard_loading_row(view: Control, time: int, map_name: String) -> void:
+	# Load expected rank of new time
+	var leaderboard_name := SWLeaderboard.leaderboard_name_from_map_name(map_name)
+	SilentWolf.Scores.get_score_position(-time, leaderboard_name)
+	SilentWolf.Scores.connect(
+		"sw_position_received",
+		self,
+		"_on_score_position_received",
+		[view, time, map_name],
+		CONNECT_ONESHOT
+	)
+	# Show loading animation
+	var anim := view.get_child(0) as LoadingAnimation
+	anim.playing = false  # started by the set_player_data's animation
+	anim.visible = true
+	var container := view.get_child(1) as Container
+	container.visible = false
+
+func _on_score_position_received(
+	score_position: int, view: Control, time: int, map_name: String
+) -> void:
+	var rank := score_position + 1
+	# Show rank and submit button
+	var anim := view.get_child(0) as LoadingAnimation
+	anim.playing = false
+	anim.visible = false
+	var container := view.get_child(1) as Container
+	container.visible = true
+	(container.get_child(0) as Label).text = _rank_to_string(rank)
+	var leaderboard_name := SWLeaderboard.leaderboard_name_from_map_name(map_name)
+	var allow_new_submit := (
+		not SWLeaderboard.has_leaderboard_submission(leaderboard_name)
+		or time < (SWLeaderboard.get_leaderboard_submission(leaderboard_name).time as int)
+	)
+	var submit_button := container.get_child(1) as Button
+	submit_button.disabled = not allow_new_submit
+	if submit_button.is_connected("pressed", self, "emit_signal"):
+		submit_button.disconnect("pressed", self, "emit_signal")
+	submit_button.connect(
+		"pressed",
+		self,
+		"emit_signal",
+		["submit", time, rank]
+	)
+
+func _rank_to_string(rank: int) -> String:
+	return str(rank) + ["st", "nd", "rd", "th"][min(rank - 1, 3)]

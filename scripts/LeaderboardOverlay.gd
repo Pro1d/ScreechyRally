@@ -23,7 +23,6 @@ func _ready() -> void:
 	submit_container.hide()
 	name_edit.connect("text_changed", self, "_on_name_changed")
 	submit_button.connect("pressed", self, "_on_submit_button_pressed")
-	SoundUI.connect_buttons(self)
 	SilentWolf.Scores.connect("sw_scores_received", self, "_on_scores_received")
 	SilentWolf.Scores.connect("sw_score_posted", self, "_on_score_posted")
 	SilentWolf.Scores.connect("sw_score_deleted", self, "_on_score_deleted")
@@ -34,11 +33,11 @@ func _exit_tree():
 
 ###### LEADERBOARD LIST ######
 
-func load_leaderboard(lb_name: String) -> void:
+func load_leaderboard(map_name: String) -> void:
 	_abort_loading()
-	_set_leaderboard_name(lb_name)
+	_set_leaderboard_name(map_name)
 	_set_visibility(Visible.LOADING)
-	SilentWolf.Scores.get_high_scores(100, lb_name)
+	SilentWolf.Scores.get_high_scores(100, leaderboard_name)
 	state = State.LOADING_LEADERBOARD
 
 func _on_scores_received(lb_name: String, scores: Array) -> void:
@@ -50,7 +49,11 @@ func _on_scores_received(lb_name: String, scores: Array) -> void:
 	else:
 		var old_child_count := rank_list.get_child_count()
 		var player_index := -1
-		var player_score_id := SWLeaderboard.get_leaderboard_submission(lb_name).score_id as String
+		var player_score_id := (
+			SWLeaderboard.get_leaderboard_submission(lb_name).score_id as String
+			if SWLeaderboard.has_leaderboard_submission(lb_name)
+			else ""
+		)
 		for i in range(len(scores)):
 			if scores[i].score_id == player_score_id:
 				player_index = i
@@ -90,9 +93,9 @@ func _on_scores_received(lb_name: String, scores: Array) -> void:
 
 ###### SUBMIT BEST TIME ######
 
-func submit_to_leaderboard(lb_name: String, time: int, rank: int = -1) -> void:
+func submit_to_leaderboard(map_name: String, time: int, rank: int = -1) -> void:
 	_abort_loading()
-	_set_leaderboard_name(lb_name)
+	_set_leaderboard_name(map_name)
 	_set_visibility(Visible.SUBMIT)
 	if SWLeaderboard.get_player_name() == "":
 		name_edit.text = ""
@@ -133,11 +136,11 @@ func _on_submit_button_pressed() -> void:
 func _on_score_posted(score_id: String) -> void:
 	if state != State.SUBMITTING:
 		return
-	var prev_submission := SWLeaderboard.get_leaderboard_submission(leaderboard_name)
-	if len(prev_submission.score_id) > 0:
+	if SWLeaderboard.has_leaderboard_submission(leaderboard_name):
+		var prev_submission := SWLeaderboard.get_leaderboard_submission(leaderboard_name)
 		SilentWolf.Scores.delete_score(prev_submission.score_id)
 		state = State.DELETING_PREV_SUBMISSION
-	var submission :=SWLeaderboard.make_leaderboard_submission(score_id, submit_form["time"])
+	var submission := SWLeaderboard.make_leaderboard_submission(score_id, submit_form["time"])
 	SWLeaderboard.save_leaderboard_submission(leaderboard_name, submission)
 	if state == State.SUBMITTING:
 		_finalize_submission()
@@ -205,9 +208,9 @@ func _set_submission_visibility(v: bool) -> void:
 	submission_preview.visible = v
 	submit_container.visible = v
 
-func _set_leaderboard_name(ld_name: String) -> void:
-	leaderboard_name = ld_name
-	title_label.text = ld_name
+func _set_leaderboard_name(map_name: String) -> void:
+	leaderboard_name = SWLeaderboard.leaderboard_name_from_map_name(map_name)
+	title_label.text = map_name
 
 func _on_close_button_pressed() -> void:
 	_abort_loading()
