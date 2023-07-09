@@ -72,8 +72,7 @@ func _input(_event : InputEvent) -> void:
 	var control_index := ControlManager.player_assignment(player_index)
 	if control_index == ControlManager.NOT_FOUND:
 		return
-	var action_prefix := "player" + str(control_index + 1) + "_"
-	
+	var action_prefix := ControlManager.action_prefix(control_index )
 	var action_pressed := false
 	for a in actions:
 		if Input.is_action_pressed(action_prefix + a):

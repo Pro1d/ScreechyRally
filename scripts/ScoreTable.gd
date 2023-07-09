@@ -337,7 +337,7 @@ func _leaderboard_loading_row(view: Control, time: int, map_name: String) -> voi
 func _on_score_position_received(
 	score_position: int, view: Control, time: int, map_name: String
 ) -> void:
-	var rank := score_position + 1
+	var rank := score_position
 	# Show rank and submit button
 	var anim := view.get_child(0) as LoadingAnimation
 	anim.playing = false
