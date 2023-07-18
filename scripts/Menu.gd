@@ -16,6 +16,9 @@ onready var map_selection_ranking := $MapSelection/VBoxContainer/RankingButton
 onready var map_selection_back := $MapSelection/VBoxContainer/BackButton
 onready var leaderboard_overlay := $LeaderboardOverlay
 
+onready var cars := [$CarDrift, $CarDrift2]
+var car_tooltips := []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _e : int # Error enum
@@ -37,7 +40,7 @@ func _ready():
 	SoundUI.update_music_button(main_music)
 	_change_menu(main_menu)
 	
-	for car in [$CarDrift, $CarDrift2]:
+	for car in cars:
 		car.save_reset_position()
 		car.color = Global.player_colors[car.player_id]
 		car.rotation_degrees = rand_range(0, 360)
@@ -53,6 +56,8 @@ func _ready():
 		var control_tooltip := CarControlToolTip.instance()
 		remote_anchor.add_child(control_tooltip)
 		control_tooltip.player_index = car.player_id
+		car_tooltips.append({"tooltip": control_tooltip, "anchor": remote_anchor})
+	_update_car_count()
 	
 	$ScreenFadeInOut.fade_in()
 
@@ -104,11 +109,25 @@ func _on_main_play_single_pressed() -> void:
 	Global.player_count = 1
 	map_selection_ranking.visible = Config.has_leaderboard()
 	_change_menu(map_selection_menu)
+	_update_car_count()
 
 func _on_main_play_multi_pressed() -> void:
 	Global.player_count = 2
 	map_selection_ranking.visible = false
 	_change_menu(map_selection_menu)
+	_update_car_count()
+
+func _update_car_count() -> void:
+	# Make sure enough cars are present
+	for i in range(Global.player_count):
+		if cars[i].get_parent() == null:
+			add_child(cars[i])
+			car_tooltips[i].anchor.add_child(car_tooltips[i].tooltip)
+	# Make sure not too many cars are present
+	for i in range(Global.player_count, len(cars)):
+		if cars[i].get_parent() != null:
+			remove_child(cars[i])
+			car_tooltips[i].anchor.remove_child(car_tooltips[i].tooltip)
 
 func _on_main_quit_pressed() -> void:
 	$ScreenFadeInOut.fade_out()

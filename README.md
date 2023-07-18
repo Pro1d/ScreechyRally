@@ -36,6 +36,8 @@ Required:
 - [x] Sound volume
 - [ ] decorate all maps
 - [ ] Credits in menu
+- [ ] remove "Leaderboard" button in end score table in two player mode
+- [ ] intuitive game rules
 
 Other:
 
@@ -85,3 +87,8 @@ generate noise as alpha mask.
 	- mix with shape reduced by 1 and smoothed by 0.5.
 	- manually create flaw with paint.
 apply as alpha to shape.
+
+## export
+
+resources: records/*, silent-wolf-api-key-itch-io.json
+features: leaderboard, itch.io

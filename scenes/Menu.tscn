@@ -293,12 +293,12 @@ anims/fade_in = SubResource( 5 )
 anims/fade_out = SubResource( 3 )
 
 [node name="CarDrift" parent="." instance=ExtResource( 5 )]
-position = Vector2( 250, 247 )
+position = Vector2( 258, 588 )
 rotation = 0.816814
 player_id = 0
 
 [node name="CarDrift2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 279, 580 )
+position = Vector2( 176, 338 )
 rotation = -0.349066
 
 [node name="TooltipCanvasLayer" type="CanvasLayer" parent="."]
