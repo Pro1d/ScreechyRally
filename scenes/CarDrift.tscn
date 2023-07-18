@@ -78,7 +78,7 @@ position = Vector2( 0, -18 )
 position = Vector2( 0, 18 )
 
 [node name="FrontLeftWheelPolygon" type="Node2D" parent="."]
-position = Vector2( 51, -17 )
+position = Vector2( 52, -17 )
 
 [node name="WheelSprite" type="Polygon2D" parent="FrontLeftWheelPolygon"]
 position = Vector2( -28.3204, 17 )
@@ -90,7 +90,7 @@ uv = PoolVector2Array( 25, 33, 26, 33, 26, 69, 25, 69, 25, 70, 8, 70, 8, 69, 7, 
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
 
 [node name="FrontRightWheelPolygon" type="Node2D" parent="."]
-position = Vector2( 51, 17 )
+position = Vector2( 52, 17 )
 
 [node name="WheelSprite" type="Polygon2D" parent="FrontRightWheelPolygon"]
 position = Vector2( -28.3204, -17 )
@@ -102,21 +102,21 @@ uv = PoolVector2Array( 25, 33, 26, 33, 26, 69, 25, 69, 25, 70, 8, 70, 8, 69, 7, 
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 22.6796, 0 )
+position = Vector2( 23.6796, 0 )
 rotation = 1.5708
-scale = Vector2( 0.300203, 0.300203 )
+scale = Vector2( 0.3, 0.295 )
 texture = ExtResource( 1 )
 
 [node name="SpriteModulate" type="Sprite" parent="."]
-position = Vector2( 22.6796, 0 )
+position = Vector2( 23.6796, 0 )
 rotation = 1.5708
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.3, 0.295 )
 texture = ExtResource( 3 )
 
 [node name="SpriteBrakeLight" type="Polygon2D" parent="."]
-position = Vector2( 22.68, 0 )
+position = Vector2( 23.68, 0 )
 rotation = 1.5708
-scale = Vector2( 0.300203, 0.300203 )
+scale = Vector2( 0.3, 0.295 )
 texture = ExtResource( 11 )
 polygon = PoolVector2Array( -33.9, 107.5, -37.2, 114.5, -37.9, 114.5, -42.9, 127.5, -52, 127.5, -60, 121.5, -60, 116.2, -58, 95.9, -58, 91.3, -50.1, 88.4, 63, 95.3, 63, 100.9, 64.6, 117.5, 59.1, 117.5, 46.9, 127.5, 40, 124.3, 40, 86.9 )
 uv = PoolVector2Array( 37.1, 255, 33.8, 262, 33.1, 262, 28.1, 275, 19, 275, 11, 269, 11, 263.7, 13, 243.4, 13, 238.8, 20.9, 235.9, 134, 242.8, 134, 248.4, 135.6, 265, 130.1, 265, 117.9, 275, 111, 271.8, 111, 234.4 )
