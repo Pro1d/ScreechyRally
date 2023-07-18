@@ -14,7 +14,7 @@ func _ready():
 	_e = container.get_node("LeaderboardButton").connect("pressed", self, "_on_ldboard_pressed")
 	_e = container.get_node("RestartButton").connect("pressed", self, "_on_restart_pressed")
 	_e = container.get_node("ExitButton").connect("pressed", self, "_exit_to_menu")
-	if not Config.has_leaderboard():
+	if not Config.has_leaderboard() or Global.player_count != 1:
 		container.get_node("LeaderboardButton").hide()
 	SoundUI.connect_buttons(self)
 	$LeaderboardOverlay.connect("visibility_changed", self, "_on_leaderboard_visibility_changed")
