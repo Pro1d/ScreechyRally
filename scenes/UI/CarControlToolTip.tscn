@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/CarControlToolTip.gd" type="Script" id=2]
 [ext_resource path="res://resources/icons/down.tres" type="Texture" id=3]
@@ -44,6 +44,38 @@ corner_radius_bottom_left = 7
 corner_detail = 3
 shadow_color = Color( 0, 0, 0, 0.243137 )
 shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=22]
+content_margin_left = 6.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0, 0, 0, 0.0862745 )
+border_width_left = 4
+border_width_top = 10
+border_width_right = 4
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=21]
+content_margin_left = 6.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0, 0, 0, 0.235294 )
+border_width_left = 4
+border_width_top = 10
+border_width_right = 4
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id=11]
 content_margin_left = 6.0
@@ -172,8 +204,8 @@ margin_right = 55.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 55, 55 )
 theme = SubResource( 17 )
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 11 )
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 21 )
 custom_styles/focus = SubResource( 11 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 11 )

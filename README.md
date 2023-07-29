@@ -36,7 +36,7 @@ Required:
 - [x] Sound volume
 - [ ] decorate all maps
 - [ ] Credits in menu
-- [ ] remove "Leaderboard" button in end score table in two player mode
+- [x] remove "Leaderboard" button in end score table in two player mode
 - [ ] intuitive game rules
 
 Other:
