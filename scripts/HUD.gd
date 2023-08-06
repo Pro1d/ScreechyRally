@@ -50,7 +50,11 @@ func _process(_delta : float) -> void:
 func _on_scores_changed(scores : Array) -> void:
 	assert(len(scores) == len(score_containers))
 	for i in range(len(score_containers)):
-		score_containers[i].get_node("ScoreLabel").text = str(scores[i])
+		score_containers[i] \
+			.get_node("LapContainer") \
+			.get_node("HBoxContainer") \
+			.get_node("ScoreLabel") \
+			.text = str(scores[i])
 
 func _on_checkpoints_changed(current : Array, total_checkpoints : int) -> void:
 	assert(len(current) == len(score_containers))

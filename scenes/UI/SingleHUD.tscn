@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/in_game.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://resources/panel_top_right.theme" type="Theme" id=5]
 
 [sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 3 )
 
@@ -34,15 +38,15 @@ grow_horizontal = 0
 theme = ExtResource( 5 )
 
 [node name="ScoreContainer" type="HBoxContainer" parent="PanelContainer"]
-margin_left = 65.0
-margin_right = 217.0
-margin_bottom = 61.0
+margin_left = 83.0
+margin_right = 271.0
+margin_bottom = 80.0
 custom_constants/separation = 0
 
 [node name="CurrentCheckpointsLabel" type="Label" parent="PanelContainer/ScoreContainer"]
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 42.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
@@ -51,18 +55,18 @@ align = 2
 
 [node name="SlashLabel" type="Label" parent="PanelContainer/ScoreContainer"]
 margin_left = 42.0
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 53.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "/"
 
 [node name="TotalCheckpointsLabel" type="Label" parent="PanelContainer/ScoreContainer"]
 margin_left = 53.0
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 95.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
@@ -71,11 +75,40 @@ text = "00"
 [node name="Empty" type="Control" parent="PanelContainer/ScoreContainer"]
 margin_left = 95.0
 margin_right = 110.0
-margin_bottom = 61.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="ScoreLabel" type="Label" parent="PanelContainer/ScoreContainer"]
+[node name="LapContainer" type="VBoxContainer" parent="PanelContainer/ScoreContainer"]
 margin_left = 110.0
-margin_right = 142.0
+margin_right = 188.0
+margin_bottom = 80.0
+grow_vertical = 2
+custom_constants/separation = -23
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScoreContainer/LapContainer"]
+margin_right = 78.0
 margin_bottom = 61.0
+custom_constants/separation = 0
+
+[node name="ScoreLabel" type="Label" parent="PanelContainer/ScoreContainer/LapContainer/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 32, 0 )
 text = "0"
+align = 2
+
+[node name="MaxLapLabel" type="Label" parent="PanelContainer/ScoreContainer/LapContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 78.0
+margin_bottom = 61.0
+text = "/3"
+
+[node name="LapsLabel" type="Label" parent="PanelContainer/ScoreContainer/LapContainer"]
+margin_top = 38.0
+margin_right = 78.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 5 )
+text = "laps"
+align = 1
+uppercase = true

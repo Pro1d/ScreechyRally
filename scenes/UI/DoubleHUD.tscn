@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/in_game.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 size = 32
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 3 )
+
 [node name="DoubleHUD" type="CenterContainer"]
 anchor_right = 1.0
 margin_top = 20.0
@@ -20,32 +24,32 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="VBox" type="VBoxContainer" parent="."]
-margin_left = 446.0
-margin_right = 920.0
-margin_bottom = 144.0
+margin_left = 381.0
+margin_right = 985.0
+margin_bottom = 163.0
 custom_constants/separation = 10
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
-margin_right = 474.0
-margin_bottom = 67.0
+margin_right = 604.0
+margin_bottom = 86.0
 size_flags_horizontal = 4
 custom_constants/separation = 0
 
 [node name="PanelContainer1" type="PanelContainer" parent="VBox/HBox"]
-margin_right = 237.0
-margin_bottom = 67.0
+margin_right = 301.0
+margin_bottom = 86.0
 theme = ExtResource( 5 )
 
 [node name="ScoreContainer" type="HBoxContainer" parent="VBox/HBox/PanelContainer1"]
-margin_left = 65.0
-margin_right = 207.0
-margin_bottom = 61.0
+margin_left = 83.0
+margin_right = 271.0
+margin_bottom = 80.0
 custom_constants/separation = 0
 
 [node name="CurrentCheckpointsLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 42.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
@@ -54,18 +58,18 @@ align = 2
 
 [node name="SlashLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
 margin_left = 42.0
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 53.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "/"
 
 [node name="TotalCheckpointsLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
 margin_left = 53.0
-margin_top = 9.0
+margin_top = 19.0
 margin_right = 95.0
-margin_bottom = 51.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
@@ -74,44 +78,101 @@ text = "00"
 [node name="Empty" type="Control" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
 margin_left = 95.0
 margin_right = 110.0
-margin_bottom = 61.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 15, 0 )
 
-[node name="ScoreLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
+[node name="LapContainer" type="VBoxContainer" parent="VBox/HBox/PanelContainer1/ScoreContainer"]
 margin_left = 110.0
-margin_right = 142.0
+margin_right = 188.0
+margin_bottom = 80.0
+grow_vertical = 2
+custom_constants/separation = -23
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBox/PanelContainer1/ScoreContainer/LapContainer"]
+margin_right = 78.0
 margin_bottom = 61.0
+custom_constants/separation = 0
+
+[node name="ScoreLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer/LapContainer/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 32, 0 )
 text = "0"
+align = 2
+
+[node name="MaxLapLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer/LapContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 78.0
+margin_bottom = 61.0
+text = "/3"
+
+[node name="LapsLabel" type="Label" parent="VBox/HBox/PanelContainer1/ScoreContainer/LapContainer"]
+margin_top = 38.0
+margin_right = 78.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 5 )
+text = "laps"
+align = 1
+uppercase = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBox/HBox"]
-margin_left = 237.0
-margin_right = 474.0
-margin_bottom = 67.0
+margin_left = 301.0
+margin_right = 604.0
+margin_bottom = 86.0
 theme = ExtResource( 6 )
 
 [node name="ScoreContainer" type="HBoxContainer" parent="VBox/HBox/PanelContainer2"]
 margin_left = 30.0
-margin_right = 172.0
+margin_right = 218.0
+margin_bottom = 80.0
+custom_constants/separation = 0
+
+[node name="LapContainer" type="VBoxContainer" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
+margin_right = 78.0
+margin_bottom = 80.0
+grow_vertical = 2
+custom_constants/separation = -23
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBox/PanelContainer2/ScoreContainer/LapContainer"]
+margin_right = 78.0
 margin_bottom = 61.0
 custom_constants/separation = 0
 
-[node name="ScoreLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
+[node name="ScoreLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer/LapContainer/HBoxContainer"]
 margin_right = 32.0
 margin_bottom = 61.0
+rect_min_size = Vector2( 32, 0 )
 text = "0"
+align = 2
+
+[node name="MaxLapLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer/LapContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 78.0
+margin_bottom = 61.0
+text = "/3"
+
+[node name="LapsLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer/LapContainer"]
+margin_top = 38.0
+margin_right = 78.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 5 )
+text = "laps"
 align = 1
+uppercase = true
 
 [node name="Empty" type="Control" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
-margin_left = 32.0
-margin_right = 47.0
-margin_bottom = 61.0
+margin_left = 78.0
+margin_right = 93.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 15, 0 )
 
 [node name="CurrentCheckpointsLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
-margin_left = 47.0
-margin_top = 9.0
-margin_right = 89.0
-margin_bottom = 51.0
+margin_left = 93.0
+margin_top = 19.0
+margin_right = 135.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
@@ -119,24 +180,26 @@ text = "00"
 align = 2
 
 [node name="SlashLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
-margin_left = 89.0
-margin_top = 9.0
-margin_right = 100.0
-margin_bottom = 51.0
+margin_left = 135.0
+margin_top = 19.0
+margin_right = 146.0
+margin_bottom = 61.0
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "/"
 
 [node name="TotalCheckpointsLabel" type="Label" parent="VBox/HBox/PanelContainer2/ScoreContainer"]
-margin_left = 100.0
-margin_top = 9.0
-margin_right = 142.0
-margin_bottom = 51.0
+margin_left = 146.0
+margin_top = 19.0
+margin_right = 188.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "00"
 
 [node name="TimeDisplay" parent="VBox" instance=ExtResource( 4 )]
-margin_left = 95.0
-margin_right = 378.0
+margin_left = 160.0
+margin_top = 96.0
+margin_right = 443.0
+margin_bottom = 163.0

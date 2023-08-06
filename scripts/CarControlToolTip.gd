@@ -57,6 +57,7 @@ func _ready() -> void:
 			$GridContainer/OptionButton.add_icon_item(JoypadIcon, c[1])
 	_e = $GridContainer/OptionButton.connect("item_selected", self, "_on_control_selected")
 	_e = ControlManager.connect("control_assignment_changed", self, "_on_control_assignment_changed")
+	SoundUI.connect_buttons(self)
 
 func _process(_delta : float) -> void:
 	set_position(init_offset)
