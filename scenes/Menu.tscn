@@ -77,25 +77,25 @@ margin_bottom = -50.0
 rect_min_size = Vector2( 600, 400 )
 
 [node name="CenterAutoLeft" type="Control" parent="MapSelection"]
-margin_right = 277.0
+margin_right = 271.0
 margin_bottom = 668.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MapSelection"]
-margin_left = 281.0
-margin_right = 669.0
+margin_left = 275.0
+margin_right = 675.0
 margin_bottom = 668.0
 scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="MapSelection/ScrollContainer"]
-margin_right = 388.0
+margin_right = 400.0
 margin_bottom = 668.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MapSelection/ScrollContainer/CenterContainer"]
 margin_top = 297.0
-margin_right = 388.0
+margin_right = 400.0
 margin_bottom = 370.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 0
@@ -103,20 +103,20 @@ custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
 [node name="GridContainer" type="GridContainer" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer"]
-margin_right = 378.0
+margin_right = 390.0
 margin_bottom = 73.0
 columns = 5
 
 [node name="CheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
-margin_right = 162.0
+margin_right = 174.0
 margin_bottom = 73.0
 group = SubResource( 6 )
 text = "Map1"
 
 [node name="BronzeCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.662745, 0.517647, 0.290196, 1 )
-margin_left = 166.0
-margin_right = 216.0
+margin_left = 178.0
+margin_right = 228.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -124,8 +124,8 @@ disabled = true
 
 [node name="SilverCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.729412, 0.733333, 0.741176, 1 )
-margin_left = 220.0
-margin_right = 270.0
+margin_left = 232.0
+margin_right = 282.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -133,8 +133,8 @@ disabled = true
 
 [node name="GoldCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 1, 0.878431, 0.490196, 1 )
-margin_left = 274.0
-margin_right = 324.0
+margin_left = 286.0
+margin_right = 336.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -142,15 +142,15 @@ disabled = true
 
 [node name="AuthorCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.286275, 0.803922, 0.941176, 1 )
-margin_left = 328.0
-margin_right = 378.0
+margin_left = 340.0
+margin_right = 390.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
 disabled = true
 
 [node name="CenterAutoRight" type="Control" parent="MapSelection"]
-margin_left = 673.0
+margin_left = 679.0
 margin_right = 951.0
 margin_bottom = 668.0
 size_flags_horizontal = 3

@@ -38,6 +38,7 @@ Required:
 - [ ] Credits in menu
 - [x] remove "Leaderboard" button in end score table in two player mode
 - [ ] intuitive game rules
+- [ ] make group of maps by level of difficulty
 
 Other:
 
