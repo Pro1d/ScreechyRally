@@ -57,6 +57,18 @@ class MapProgression:
 		mp.best_record = RecordDataBase.Record.from_dict(d.best_record)
 		return mp
 
+class MapGroup:
+	var name : String
+	var map_paths := []
+
+	func _init(n : String, mp : Array):
+		name = n
+		map_paths = mp
+	
+	static func comparator(a : MapGroup, b : MapGroup) -> int:
+		return a.name.casecmp_to(b.name)
+
+
 const map_dir_path := "res://scenes/race_maps/"
 const maps_info_path := "res://records/maps_info.bin"
 const progression_path := "user://progression.bin"
@@ -65,10 +77,13 @@ static func map_file_to_map_name(full_path : String) -> String:
 	var basename := full_path.get_file().get_basename()
 	return basename.replace('_', ' ')
 
-static func get_maps_list() -> Array:
+static func group_directory_to_group_name(dir_name : String) -> String:
+	return dir_name.substr(3)
+
+static func get_maps_list(path : String) -> Array:
 	var dir := Directory.new()
 	var map_paths := []
-	if dir.open(map_dir_path) == OK:
+	if dir.open(path) == OK:
 		var _e := dir.list_dir_begin()
 		var file_name := dir.get_next()
 		while file_name != "":
@@ -77,6 +92,26 @@ static func get_maps_list() -> Array:
 			file_name = dir.get_next()
 	map_paths.sort()
 	return map_paths
+
+static func get_maps() -> Array:
+	var dir := Directory.new()
+	var maps := []
+	
+	if dir.open(map_dir_path) == OK:
+		var _e := dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir() and not file_name.begins_with("."):
+				var map_paths := get_maps_list(dir.get_current_dir().plus_file(file_name))
+				if not map_paths.empty():
+					maps.append(MapGroup.new(file_name, map_paths))
+			file_name = dir.get_next()
+	
+	maps.sort_custom(MapGroup, "compare")
+	for mg in maps:
+		mg.name = group_directory_to_group_name(mg.name)
+	
+	return maps
 
 static func _read_bin_object_map(path : String, dict_to_obj : FuncRef) -> Dictionary:
 	var f := File.new()

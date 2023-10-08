@@ -33,6 +33,9 @@ var game_mode : int = GameMode.UNDEFINED
 
 onready var _physics_fps : int = ProjectSettings.get_setting("physics/common/physics_fps")
 
+func _enter_tree():
+	randomize()
+
 func set_race_map_scene_name(path : String) -> void:
 	race_map_scene_name = path
 

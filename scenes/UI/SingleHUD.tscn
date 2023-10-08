@@ -48,10 +48,11 @@ margin_top = 19.0
 margin_right = 42.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 42, 0 )
+rect_pivot_offset = Vector2( 21, 21 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "00"
-align = 2
+align = 1
 
 [node name="SlashLabel" type="Label" parent="PanelContainer/ScoreContainer"]
 margin_left = 42.0
@@ -71,6 +72,7 @@ rect_min_size = Vector2( 42, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.737255 )
 custom_fonts/font = SubResource( 4 )
 text = "00"
+align = 1
 
 [node name="Empty" type="Control" parent="PanelContainer/ScoreContainer"]
 margin_left = 95.0
@@ -95,8 +97,9 @@ custom_constants/separation = 0
 margin_right = 32.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 32, 0 )
+rect_pivot_offset = Vector2( 16, 31 )
 text = "0"
-align = 2
+align = 1
 
 [node name="MaxLapLabel" type="Label" parent="PanelContainer/ScoreContainer/LapContainer/HBoxContainer"]
 margin_left = 32.0

@@ -77,46 +77,46 @@ margin_bottom = -50.0
 rect_min_size = Vector2( 600, 400 )
 
 [node name="CenterAutoLeft" type="Control" parent="MapSelection"]
-margin_right = 271.0
+margin_right = 245.0
 margin_bottom = 668.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MapSelection"]
-margin_left = 275.0
-margin_right = 675.0
+margin_left = 249.0
+margin_right = 701.0
 margin_bottom = 668.0
 scroll_horizontal_enabled = false
 
 [node name="CenterContainer" type="CenterContainer" parent="MapSelection/ScrollContainer"]
-margin_right = 400.0
+margin_right = 452.0
 margin_bottom = 668.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MapSelection/ScrollContainer/CenterContainer"]
-margin_top = 297.0
-margin_right = 400.0
-margin_bottom = 370.0
+margin_top = 239.0
+margin_right = 452.0
+margin_bottom = 429.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 0
 
 [node name="GridContainer" type="GridContainer" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer"]
-margin_right = 390.0
-margin_bottom = 73.0
+margin_right = 442.0
+margin_bottom = 190.0
 columns = 5
 
 [node name="CheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
-margin_right = 174.0
+margin_right = 226.0
 margin_bottom = 73.0
 group = SubResource( 6 )
 text = "Map1"
 
 [node name="BronzeCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.662745, 0.517647, 0.290196, 1 )
-margin_left = 178.0
-margin_right = 228.0
+margin_left = 230.0
+margin_right = 280.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -124,8 +124,8 @@ disabled = true
 
 [node name="SilverCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.729412, 0.733333, 0.741176, 1 )
-margin_left = 232.0
-margin_right = 282.0
+margin_left = 284.0
+margin_right = 334.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -133,8 +133,8 @@ disabled = true
 
 [node name="GoldCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 1, 0.878431, 0.490196, 1 )
-margin_left = 286.0
-margin_right = 336.0
+margin_left = 338.0
+margin_right = 388.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
@@ -142,15 +142,34 @@ disabled = true
 
 [node name="AuthorCheckBox" type="CheckBox" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
 modulate = Color( 0.286275, 0.803922, 0.941176, 1 )
-margin_left = 340.0
-margin_right = 390.0
+margin_left = 392.0
+margin_right = 442.0
 margin_bottom = 73.0
 custom_icons/checked_disabled = ExtResource( 7 )
 custom_icons/unchecked_disabled = ExtResource( 8 )
 disabled = true
 
+[node name="MarginContainer" type="MarginContainer" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer"]
+margin_top = 77.0
+margin_right = 226.0
+margin_bottom = 190.0
+custom_constants/margin_top = 30
+custom_constants/margin_left = 90
+custom_constants/margin_bottom = 10
+
+[node name="GroupLabel" type="Label" parent="MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer/MarginContainer"]
+margin_left = 90.0
+margin_top = 30.0
+margin_right = 226.0
+margin_bottom = 103.0
+custom_colors/font_color = Color( 0.882353, 0.882353, 0.882353, 1 )
+custom_colors/font_color_shadow = Color( 0.866667, 0.509804, 0, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 3
+text = "Easy"
+
 [node name="CenterAutoRight" type="Control" parent="MapSelection"]
-margin_left = 679.0
+margin_left = 705.0
 margin_right = 951.0
 margin_bottom = 668.0
 size_flags_horizontal = 3
@@ -182,10 +201,16 @@ margin_bottom = 591.0
 text = "Ranking"
 align = 2
 
-[node name="PlayButton" type="Button" parent="MapSelection/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MapSelection/VBoxContainer"]
 margin_top = 595.0
 margin_right = 157.0
 margin_bottom = 668.0
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="MapSelection/VBoxContainer/HBoxContainer"]
+margin_right = 157.0
+margin_bottom = 73.0
+size_flags_horizontal = 0
 text = "Start"
 align = 2
 
@@ -293,12 +318,12 @@ anims/fade_in = SubResource( 5 )
 anims/fade_out = SubResource( 3 )
 
 [node name="CarDrift" parent="." instance=ExtResource( 5 )]
-position = Vector2( 258, 588 )
+position = Vector2( 1146, 387 )
 rotation = 0.816814
 player_id = 0
 
 [node name="CarDrift2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 176, 338 )
+position = Vector2( 139, 662 )
 rotation = -0.349066
 
 [node name="TooltipCanvasLayer" type="CanvasLayer" parent="."]

@@ -50,14 +50,27 @@ func _process(_delta : float) -> void:
 func _on_scores_changed(scores : Array) -> void:
 	assert(len(scores) == len(score_containers))
 	for i in range(len(score_containers)):
-		score_containers[i] \
+		var score_label := score_containers[i] \
 			.get_node("LapContainer") \
 			.get_node("HBoxContainer") \
-			.get_node("ScoreLabel") \
-			.text = str(scores[i])
+			.get_node("ScoreLabel") as Label
+		if score_label.text != str(scores[i]):
+			score_label.text = str(scores[i])
+			var tween := create_tween()
+			tween.tween_property(score_label, "rect_scale", Vector2.ONE, 0.5) \
+				.from(Vector2.ONE * 4.0) \
+				.set_ease(Tween.EASE_IN)
 
 func _on_checkpoints_changed(current : Array, total_checkpoints : int) -> void:
 	assert(len(current) == len(score_containers))
 	for i in range(len(score_containers)):
-		score_containers[i].get_node("CurrentCheckpointsLabel").text = str(current[i])
+		var current_cp_label := score_containers[i].get_node("CurrentCheckpointsLabel") as Label
+		if current_cp_label.text != str(current[i]):
+			current_cp_label.text = str(current[i])
+			if current[i] > 0:
+				var tween := create_tween()
+				tween.tween_property(current_cp_label, "rect_scale", Vector2.ONE, 0.5) \
+					.from(Vector2.ONE * 4.0) \
+					.set_ease(Tween.EASE_IN)
 		score_containers[i].get_node("TotalCheckpointsLabel").text = str(total_checkpoints)
+		

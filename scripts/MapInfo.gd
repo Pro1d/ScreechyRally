@@ -78,7 +78,7 @@ func print_log(array : Array, endl : bool = true) -> void:
 		string += "\n"
 	log_label.text += string
 
-static func _get_closest_time_index(times : Array, target : int, tolerance : float = 0.05) -> int:
+static func _get_closest_time_index(times : Array, target : int, atol : float = 50, rtol : float = 0.10) -> int:
 	var closest_index := -1
 	var closest_distance := 0.0
 	for i in range(times.size()):
@@ -86,15 +86,16 @@ static func _get_closest_time_index(times : Array, target : int, tolerance : flo
 		if closest_index == -1 or distance < closest_distance:
 			closest_distance = distance
 			closest_index = i
-	print(closest_index, " ", closest_distance, " ", target, " ", closest_distance / float(target), " ", tolerance)
-	if closest_index != -1 and closest_distance / float(target) < tolerance:
+	if closest_index != -1 and max(0, closest_distance - atol) / float(target) < rtol:
 		return closest_index
 	return -1
 
 func generate_map_info() -> Dictionary:
 	var maps_info := {}
 
-	var maps := MapsList.get_maps_list()
+	var maps := []
+	for mg in MapsList.get_maps():
+		maps.append_array(mg.map_paths)
 
 	for map_path in maps:
 		var info := MapsList.MapInfo.new()
@@ -116,6 +117,12 @@ func generate_map_info() -> Dictionary:
 			author.duration = times[min_time_index]
 			info.target_medals[MapsList.MapInfo.Medal.AUTHOR] = author
 			info.auto_target_medals()
+			
+			var targets := ["Target times: "]
+			for i in range(MapsList.MapInfo.Medal.AUTHOR + 1):
+				targets.append(" ")
+				targets.append(info.target_medals[i].duration)
+			print_log(targets)
 			
 			var medal_indices := []
 			for m in range(MapsList.MapInfo.Medal.GOLD + 1):
