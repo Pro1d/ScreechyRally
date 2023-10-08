@@ -223,9 +223,9 @@ custom_styles/panel = SubResource( 2 )
 [node name="Label" type="Label" parent="GridContainer/Up"]
 visible = false
 margin_left = 2.0
-margin_top = 2.0
-margin_right = 63.0
-margin_bottom = 63.0
+margin_top = 8.0
+margin_right = 50.0
+margin_bottom = 44.0
 text = "Z"
 align = 1
 valign = 1
@@ -359,6 +359,7 @@ wait_time = 1.2
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_priority = 10
 anims/RESET = SubResource( 6 )
 anims/fade_in = SubResource( 3 )
 anims/fade_out = SubResource( 4 )

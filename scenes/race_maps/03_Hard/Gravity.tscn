@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/RaceMap.gd" type="Script" id=1]
 [ext_resource path="res://scenes/decors/Building02.tscn" type="PackedScene" id=2]
@@ -10,21 +10,23 @@
 [ext_resource path="res://scenes/decors/Building01.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/decors/Rock02.tscn" type="PackedScene" id=9]
 [ext_resource path="res://resources/race_tile_set2.tres" type="TileSet" id=10]
+[ext_resource path="res://resources/cracked_ground.material" type="Material" id=11]
 
 [node name="RaceMap" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
+material = ExtResource( 11 )
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 250, 250 )
 cell_quadrant_size = 4
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( -655362, -536870905, 0, -589826, -2147483634, 0, -524290, -2147483634, 0, -458754, -2147483634, 0, -393219, -2147483626, 0, -393218, -2147483628, 0, -327685, -536870889, 0, -327684, -536870893, 0, -327683, -2147483629, 0, -327682, -2147483625, 0, -262149, -536870892, 0, -262148, -536870890, 0, -196615, -536870896, 0, -196614, 14, 0, -196613, 1073741827, 0, -196612, 14, 0, -196611, 7, 0, -131079, -1610612722, 0, -65543, -1610612722, 0, -65540, 1610612752, 0, -65539, 1610612750, 0, -65538, -1610612711, 0, -65537, -1610612710, 0, -131071, 1610612752, 0, -131070, -1073741808, 0, -7, -1610612722, 0, -4, -1610612725, 0, -2, -1073741798, 0, -1, -1610612712, 0, -65536, 11, 0, -65535, 17, 0, -65534, -2147483628, 0, 65529, -1610612722, 0, 65532, -1610612722, 0, 65533, 1610612752, 0, 65534, 3, 0, 65535, 14, 0, 0, 1073741824, 0, 1, -2147483629, 0, 2, -2147483625, 0, 131065, -1610612722, 0, 131068, -1610612716, 0, 131069, -1610612719, 0, 131070, 1610612739, 0, 131071, 1610612750, 0, 65536, -1073741808, 0, 196586, -2147483641, 0, 196601, -1073741821, 0, 196602, 7, 0, 196604, -1610612713, 0, 196605, -1610612717, 0, 196606, 14, 0, 196607, 11, 0, 131072, 16, 0, 262137, -1610612722, 0, 327672, -2147483626, 0, 327673, -2147483628, 0, 393200, 536870919, 0, 393201, 1073741838, 0, 393202, 1073741838, 0, 393203, 1073741838, 0, 393204, 1073741838, 0, 393205, 1073741838, 0, 393206, 1073741838, 0, 393207, 1073741838, 0, 393208, -2147483629, 0, 393209, -2147483625, 0 )
+tile_data = PoolIntArray( -65537, 1610612752, 0, -131072, 11, 0, -131071, -1073741808, 0, -2, 1610612752, 0, -1, -1073741820, 0, -65536, 1610612747, 0, -65535, -1610612733, 0, 65533, 1610612752, 0, 65534, 4, 0, 65535, -1610612732, 0, 0, 1073741824, 0, 1, -1610612732, 0, 2, 3, 0, 3, -1073741808, 0, 131069, -1073741813, 0, 131070, -1073741821, 0, 131071, 1610612739, 0, 65536, -1610612718, 0, 65537, -1073741813, 0, 65538, -1073741806, 0, 65539, -1610612733, 0, 196586, -2147483641, 0, 196605, -1610612716, 0, 196606, -1610612719, 0, 196607, 11, 0, 131072, 1610612740, 0, 131073, 1610612739, 0, 131074, 11, 0, 131075, 16, 0, 262141, -1610612713, 0, 262142, -1610612717, 0, 262143, 14, 0, 196608, 16, 0 )
 
 [node name="Tree01" parent="." instance=ExtResource( 5 )]
-position = Vector2( 428, 336 )
+position = Vector2( 2700, 1719 )
 rotation = -1.51764
 
 [node name="Tree02" parent="Tree01" instance=ExtResource( 5 )]
@@ -42,7 +44,7 @@ position = Vector2( 80.0514, 77.7162 )
 rotation = 2.08772
 
 [node name="Tree02" parent="." instance=ExtResource( 5 )]
-position = Vector2( 326, 986 )
+position = Vector2( 2598, 2369 )
 rotation = 0.463915
 
 [node name="Tree02" parent="Tree02" instance=ExtResource( 5 )]
@@ -60,7 +62,7 @@ position = Vector2( -65.704, 136.865 )
 rotation = 2.08772
 
 [node name="Tree12" parent="." instance=ExtResource( 7 )]
-position = Vector2( 804, 96.0001 )
+position = Vector2( 3076, 1479 )
 rotation = -2.70696
 
 [node name="Tree11" parent="Tree12" instance=ExtResource( 7 )]
@@ -73,7 +75,7 @@ rotation = -0.975435
 scale = Vector2( 0.836805, 0.836805 )
 
 [node name="Building01" parent="." instance=ExtResource( 8 )]
-position = Vector2( -48, -824 )
+position = Vector2( 2224, 559 )
 rotation = 1.90601
 
 [node name="Tree08" parent="Building01" instance=ExtResource( 7 )]
@@ -86,7 +88,7 @@ rotation = -2.37849
 scale = Vector2( 0.696862, 0.696862 )
 
 [node name="Rock01" parent="." instance=ExtResource( 6 )]
-position = Vector2( 201, 284 )
+position = Vector2( 2473, 1667 )
 rotation = 0.123592
 
 [node name="Rock05" parent="Rock01" instance=ExtResource( 6 )]
@@ -100,7 +102,7 @@ rotation = -0.193882
 scale = Vector2( 0.463371, 0.463371 )
 
 [node name="Tree03" parent="." instance=ExtResource( 7 )]
-position = Vector2( 685, -756 )
+position = Vector2( 2957, 627 )
 rotation = 3.04292
 
 [node name="Tree04" parent="Tree03" instance=ExtResource( 7 )]
@@ -119,7 +121,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree13" parent="." instance=ExtResource( 7 )]
-position = Vector2( -303, -650 )
+position = Vector2( 1969, 733 )
 rotation = 3.04292
 
 [node name="Tree04" parent="Tree13" instance=ExtResource( 7 )]
@@ -138,7 +140,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree04" parent="." instance=ExtResource( 7 )]
-position = Vector2( 978, -279 )
+position = Vector2( 3250, 1104 )
 rotation = 0.0138734
 
 [node name="Tree04" parent="Tree04" instance=ExtResource( 7 )]
@@ -157,7 +159,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree06" parent="." instance=ExtResource( 7 )]
-position = Vector2( -8.99999, -612 )
+position = Vector2( 2263, 771 )
 rotation = 2.83285
 
 [node name="Tree04" parent="Tree06" instance=ExtResource( 7 )]
@@ -176,7 +178,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree07" parent="." instance=ExtResource( 7 )]
-position = Vector2( 500, -643 )
+position = Vector2( 2772, 740 )
 rotation = 0.0138734
 
 [node name="Tree04" parent="Tree07" instance=ExtResource( 7 )]
@@ -195,7 +197,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree09" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1314, -357 )
+position = Vector2( 3586, 1026 )
 rotation = 0.0138734
 
 [node name="Tree04" parent="Tree09" instance=ExtResource( 7 )]
@@ -214,7 +216,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree05" parent="." instance=ExtResource( 7 )]
-position = Vector2( 672, 345 )
+position = Vector2( 2944, 1728 )
 rotation = 2.01278
 
 [node name="Tree04" parent="Tree05" instance=ExtResource( 7 )]
@@ -233,7 +235,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Tree08" parent="." instance=ExtResource( 7 )]
-position = Vector2( 974, -54 )
+position = Vector2( 3246, 1329 )
 rotation = 2.08613
 
 [node name="Tree04" parent="Tree08" instance=ExtResource( 7 )]
@@ -257,7 +259,7 @@ rotation = -1.41964
 scale = Vector2( 0.666315, 0.666315 )
 
 [node name="Building02" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1328, 258 )
+position = Vector2( 944, 1641 )
 rotation = 4.70184
 
 [node name="Bush01" parent="Building02" instance=ExtResource( 3 )]
@@ -286,7 +288,7 @@ scale = Vector2( 1.24878, 1.24878 )
 position = Vector2( -107.48, 70.7103 )
 
 [node name="Bush03" parent="." instance=ExtResource( 4 )]
-position = Vector2( -311, -55 )
+position = Vector2( 1961, 1328 )
 rotation = -3.03082
 
 [node name="Bush04" parent="Bush03" instance=ExtResource( 4 )]
@@ -313,7 +315,7 @@ rotation = 3.12087
 scale = Vector2( 1.68, 1.68 )
 
 [node name="Bush04" parent="." instance=ExtResource( 4 )]
-position = Vector2( -712, -125 )
+position = Vector2( 1560, 1258 )
 rotation = -0.281893
 
 [node name="Bush04" parent="Bush04" instance=ExtResource( 4 )]
@@ -335,7 +337,7 @@ position = Vector2( 27.3775, -11.8521 )
 rotation = 0.755918
 
 [node name="Tree10" parent="." instance=ExtResource( 5 )]
-position = Vector2( 359, 570 )
+position = Vector2( 2631, 1953 )
 
 [node name="Tree12" parent="Tree10" instance=ExtResource( 5 )]
 position = Vector2( 129, 101 )
@@ -352,7 +354,7 @@ rotation = 1.41702
 scale = Vector2( 0.838427, 0.838427 )
 
 [node name="Tree14" parent="." instance=ExtResource( 5 )]
-position = Vector2( -590, 919 )
+position = Vector2( 1682, 2302 )
 
 [node name="Tree12" parent="Tree14" instance=ExtResource( 5 )]
 position = Vector2( 129, 101 )
@@ -369,7 +371,7 @@ rotation = 1.41702
 scale = Vector2( 0.838427, 0.838427 )
 
 [node name="Tree11" parent="." instance=ExtResource( 5 )]
-position = Vector2( 395, 861 )
+position = Vector2( 2667, 2244 )
 rotation = 2.54396
 
 [node name="Tree12" parent="Tree11" instance=ExtResource( 5 )]

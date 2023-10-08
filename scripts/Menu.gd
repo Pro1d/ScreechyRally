@@ -11,7 +11,7 @@ onready var main_music := $Main/VBoxContainer/MusicButton
 onready var main_quit := $Main/VBoxContainer/QuitButton
 onready var map_selection_menu := $MapSelection
 onready var map_selection_list := $MapSelection/ScrollContainer/CenterContainer/MarginContainer/GridContainer
-onready var map_selection_play := $MapSelection/VBoxContainer/PlayButton
+onready var map_selection_play := $MapSelection/VBoxContainer/HBoxContainer/PlayButton
 onready var map_selection_ranking := $MapSelection/VBoxContainer/RankingButton
 onready var map_selection_back := $MapSelection/VBoxContainer/BackButton
 onready var leaderboard_overlay := $LeaderboardOverlay
@@ -52,6 +52,7 @@ func _ready():
 		car.get_control_anchor().add_child(remote_transform)
 		remote_transform.remote_path = remote_anchor.get_path()
 		remote_transform.use_global_coordinates = true
+		remote_transform.process_priority = 10
 		# Instantiate control tooltip as child of remote anchor
 		var control_tooltip := CarControlToolTip.instance()
 		remote_anchor.add_child(control_tooltip)
@@ -69,36 +70,54 @@ func _build_map_selection_list() -> void:
 		map_selection_list.get_child(3),
 		map_selection_list.get_child(4)
 	]
-	var map_list := MapsList.get_maps_list()
+	var group_model := map_selection_list.get_child(5) as Container
+	var map_groups := MapsList.get_maps()
 	var maps_info : Dictionary = Global.maps_info
 	var maps_progression : Dictionary = Global.maps_progression
-	for scene_file in map_list:
-		var checkbox := model.duplicate() as CheckBox
-		checkbox.text = MapsList.map_file_to_map_name(scene_file)
-		var _e := checkbox.connect("pressed", Global, "set_race_map_scene_name", [scene_file])
-		_e = checkbox.connect("button_up", self, "_on_race_map_clicked", [scene_file])
-		map_selection_list.add_child(checkbox)
-		var info : MapsList.MapInfo = maps_info.get(scene_file)
-		var progression : MapsList.MapProgression = maps_progression.get(scene_file)
-		var completed := info.medals_completed(progression) if info != null else [0,0,0,0]
-		for i in range(MapsList.MapInfo.Medal.COUNT):
-			var cb = medal_models[i].duplicate()
-			cb.modulate.a = 0.0
-			if info != null:
-				var medal : RecordDataBase.Record = info.target_medals[i]
-				if medal != null and not medal.path.empty():
-					cb.modulate.a = 1.0
-					if completed[i]:
-						cb.pressed = true
-					elif i == MapsList.MapInfo.Medal.AUTHOR and not completed[MapsList.MapInfo.Medal.GOLD]:
-						cb.modulate.a = 0.0
-			map_selection_list.add_child(cb)
+	var first_map_checkbox = null
+	for mg in map_groups:
+		# Group header
+		var group_label := group_model.duplicate() as Container
+		(group_label.get_child(0) as Label).text = mg.name
+		map_selection_list.add_child(group_label)
+		for _i in range(MapsList.MapInfo.Medal.COUNT):
+			map_selection_list.add_child(Control.new())
+		
+		# Maps
+		for scene_file in mg.map_paths:
+			# Checkbox
+			var checkbox := model.duplicate() as CheckBox
+			checkbox.text = MapsList.map_file_to_map_name(scene_file)
+			var _e := checkbox.connect("pressed", Global, "set_race_map_scene_name", [scene_file])
+			_e = checkbox.connect("button_up", self, "_on_race_map_clicked", [scene_file])
+			map_selection_list.add_child(checkbox)
+			if first_map_checkbox == null:
+				first_map_checkbox = checkbox
+			# Medals
+			var info : MapsList.MapInfo = maps_info.get(scene_file)
+			var progression : MapsList.MapProgression = maps_progression.get(scene_file)
+			var completed := info.medals_completed(progression) if info != null else [0,0,0,0]
+			for i in range(MapsList.MapInfo.Medal.COUNT):
+				var cb = medal_models[i].duplicate()
+				cb.modulate.a = 0.0
+				if info != null:
+					var medal : RecordDataBase.Record = info.target_medals[i]
+					if medal != null and not medal.path.empty():
+						cb.modulate.a = 1.0
+						if completed[i]:
+							cb.pressed = true
+						elif i == MapsList.MapInfo.Medal.AUTHOR and not completed[MapsList.MapInfo.Medal.GOLD]:
+							cb.modulate.a = 0.0
+				map_selection_list.add_child(cb)
 	
 	map_selection_list.remove_child(model)
 	for m in medal_models:
 		map_selection_list.remove_child(m)
-	(map_selection_list.get_child(0) as CheckBox).pressed = true
-	Global.race_map_scene_name = map_list[0]
+	map_selection_list.remove_child(group_model)
+	
+	if first_map_checkbox != null:
+		(first_map_checkbox as CheckBox).pressed = true
+		Global.race_map_scene_name = map_groups[0].map_paths[0]
 
 func _on_viewport_size_changed() -> void:
 	var actual_size := get_viewport().size * ($Camera2D as Camera2D).zoom
@@ -164,6 +183,12 @@ func _on_race_map_clicked(scene_file_name: String) -> void:
 			_on_map_selection_play_pressed()
 	__last_scene_file_name_clicked = scene_file_name
 	__last_scene_file_name_clicked_time = time
+	
+	# Animate "Play" button (hint for player)
+	map_selection_play.rect_pivot_offset = map_selection_play.rect_size / 2
+	var tween := create_tween()
+	tween.tween_property(map_selection_play, "rect_scale", Vector2.ONE, 0.2) \
+		.from(Vector2.ONE * 1.7).set_ease(Tween.EASE_IN)
 
 func _change_menu(menu : Control) -> void:
 	map_selection_menu.hide()

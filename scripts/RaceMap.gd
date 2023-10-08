@@ -82,3 +82,11 @@ func _body_entered_checkpoint_area(body, checkpoint_id) -> void:
 
 func _body_entered_start_area(body) -> void:
 	emit_signal("start_area_entered", body)
+
+func _process(_delta: float) -> void:
+	var tm: TileMap = $TileMap
+	var sm := tm.material as ShaderMaterial 
+	if sm != null:
+		var local_to_view: Transform2D = tm.get_viewport_transform() * tm.global_transform
+		var view_to_local: Transform2D = local_to_view.affine_inverse()
+		sm.set_shader_param("view_to_local", view_to_local)

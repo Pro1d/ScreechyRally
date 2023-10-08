@@ -72,7 +72,7 @@ class Record:
 	func _load_data(path : String) -> void:
 		assert(not recording)
 		var file := File.new()
-		print_debug("Opening record: ", path)
+		#print_debug("Opening record: ", path)
 		var _e := file.open(path, File.READ)
 		if _e:
 			printerr("Error reading ", path, " code: ", _e)
@@ -100,7 +100,7 @@ class Record:
 
 	static func read_duration(path : String) -> int:
 		var file := File.new()
-		print_debug("Opening record: ", path)
+		#print_debug("Opening record: ", path)
 		var _e := file.open(path, File.READ)
 		if _e:
 			printerr("Error reading ", path, " code: ", _e)

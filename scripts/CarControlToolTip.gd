@@ -29,6 +29,8 @@ const joypad_mapping := ["RT", "LT", KEY_LEFT, KEY_RIGHT, "B"]
 export var player_index := 0 setget set_player_index
 
 onready var timer := $Timer as Timer
+onready var up_container := $GridContainer/Up as PanelContainer
+var up_container_tween : SceneTreeTween
 onready var labels := [
 	$GridContainer/Up/Label,
 	$GridContainer/Down/Label,
@@ -58,6 +60,19 @@ func _ready() -> void:
 	_e = $GridContainer/OptionButton.connect("item_selected", self, "_on_control_selected")
 	_e = ControlManager.connect("control_assignment_changed", self, "_on_control_assignment_changed")
 	SoundUI.connect_buttons(self)
+	
+	# Press forward animation hint
+	var style_box_default := up_container.get_stylebox("panel") as StyleBoxFlat
+	var style_box_pressed := style_box_default.duplicate() as StyleBoxFlat
+	style_box_pressed.bg_color = lerp(style_box_pressed.bg_color, Color.white, 0.5)
+	style_box_pressed.border_color = lerp(style_box_pressed.border_color, Color.white, 0.5)
+	var tween := create_tween()
+	tween.tween_callback(up_container, "add_stylebox_override", ["panel", style_box_default])
+	tween.tween_interval(2.0)
+	tween.tween_callback(up_container, "add_stylebox_override", ["panel", style_box_pressed])
+	tween.tween_interval(0.8)
+	tween.set_loops()
+	up_container_tween = tween
 
 func _process(_delta : float) -> void:
 	set_position(init_offset)
@@ -89,6 +104,7 @@ func _input(_event : InputEvent) -> void:
 func _on_timeout() -> void:
 	if visible:
 		$AnimationPlayer.play("fade_out")
+		up_container_tween.stop()
 	else:
 		$AnimationPlayer.play("fade_in")
 
