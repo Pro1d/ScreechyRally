@@ -34,11 +34,11 @@ Required:
 - [x] Ghost best record (for solo mode)
 - [x] Control display / config
 - [x] Sound volume
-- [ ] decorate all maps
+- [x] decorate all maps
 - [ ] Credits in menu
 - [x] remove "Leaderboard" button in end score table in two player mode
-- [ ] intuitive game rules
-- [ ] make group of maps by level of difficulty
+- [x] intuitive game rules
+- [x] make group of maps by level of difficulty
 
 Other:
 
