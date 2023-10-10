@@ -8,9 +8,9 @@ var _control_action_prefix := [
 	"player1_", "player2_", "player4_", "player6_", "player7_",
 ]
 # _control_assignment[control_index] = player_index
-var _control_assignment := [0, 1, UNASSIGNED, UNASSIGNED, UNASSIGNED]
+var _control_assignment := [0, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED]
 # _player_assignment[player_index] = control_index
-var _player_assignment := [0, 1, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED]
+var _player_assignment := [0, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED, UNASSIGNED]
 
 func _ready():
 	var _i := get_joypad_count()
@@ -44,6 +44,13 @@ func assign(control_index : int, player_index : int) -> void:
 	_control_assignment[control_index] = player_index
 	_player_assignment[player_index] = control_index
 	emit_signal("control_assignment_changed", player_index, prev, control_index)
+
+func unassign_player(player_index : int) -> void:
+	var prev := player_assignment(player_index)
+	if prev != NOT_FOUND:
+		_control_assignment[prev] = UNASSIGNED
+		_player_assignment[player_index] = UNASSIGNED
+		emit_signal("control_assignment_changed", player_index, prev, UNASSIGNED)
 
 func action_prefix(control_index : int) -> String:
 	return _control_action_prefix[control_index]

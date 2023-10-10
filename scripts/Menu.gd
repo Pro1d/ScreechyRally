@@ -142,11 +142,13 @@ func _update_car_count() -> void:
 		if cars[i].get_parent() == null:
 			add_child(cars[i])
 			car_tooltips[i].anchor.add_child(car_tooltips[i].tooltip)
+			ControlManager.assign(ControlManager.find_unassigned(), i)
 	# Make sure not too many cars are present
 	for i in range(Global.player_count, len(cars)):
 		if cars[i].get_parent() != null:
 			remove_child(cars[i])
 			car_tooltips[i].anchor.remove_child(car_tooltips[i].tooltip)
+			ControlManager.unassign_player(i)
 
 func _on_main_quit_pressed() -> void:
 	$ScreenFadeInOut.fade_out()

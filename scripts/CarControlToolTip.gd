@@ -30,6 +30,7 @@ export var player_index := 0 setget set_player_index
 
 onready var timer := $Timer as Timer
 onready var up_container := $GridContainer/Up as PanelContainer
+onready var style_box_default := up_container.get_stylebox("panel") as StyleBoxFlat
 var up_container_tween : SceneTreeTween
 onready var labels := [
 	$GridContainer/Up/Label,
@@ -62,7 +63,6 @@ func _ready() -> void:
 	SoundUI.connect_buttons(self)
 	
 	# Press forward animation hint
-	var style_box_default := up_container.get_stylebox("panel") as StyleBoxFlat
 	var style_box_pressed := style_box_default.duplicate() as StyleBoxFlat
 	style_box_pressed.bg_color = lerp(style_box_pressed.bg_color, Color.white, 0.5)
 	style_box_pressed.border_color = lerp(style_box_pressed.border_color, Color.white, 0.5)
@@ -105,17 +105,26 @@ func _on_timeout() -> void:
 	if visible:
 		$AnimationPlayer.play("fade_out")
 		up_container_tween.stop()
+		up_container.add_stylebox_override("panel", style_box_default)
 	else:
 		$AnimationPlayer.play("fade_in")
 
 func set_player_index(p_idx : int) -> void:
 	player_index = p_idx
-	var control_index := ControlManager.player_assignment(player_index)
-	$GridContainer/OptionButton.select(control_index)
+	_update_selected_option()
 	_update_control_availability()
 	_override_option_button_display()
 	_update_keys_display()
 	_update_player_color()
+
+func _update_selected_option():
+	var control_index := ControlManager.player_assignment(player_index)
+	var option_button := $GridContainer/OptionButton as OptionButton
+	if control_index == ControlManager.UNASSIGNED:
+		control_index = -1  # <=> option button deselect
+	if option_button.selected != control_index:
+		option_button.select(control_index)
+		_override_option_button_display()
 
 func _update_player_color() -> void:
 	var style_box : StyleBoxFlat = get_stylebox("panel").duplicate()
@@ -168,4 +177,5 @@ func _on_control_selected(control_index : int):
 func _on_control_assignment_changed(_player_index : int, _prev_control_index : int, _new_control_index : int) -> void:
 	if _player_index == player_index:
 		_update_keys_display()
+	_update_selected_option()
 	_update_control_availability()
