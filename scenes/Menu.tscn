@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/fonts/Catenary-Stamp.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://resources/road.theme" type="Theme" id=2]
@@ -10,6 +10,13 @@
 [ext_resource path="res://assets/images/UI/medal_off.png" type="Texture" id=8]
 [ext_resource path="res://scenes/ScreenFadeInOut.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/UI/LeaderboardOverlay.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/images/crackle.png" type="Texture" id=11]
+[ext_resource path="res://resources/cracked_ground_menu.gdshader" type="Shader" id=12]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 12 )
+shader_param/scale = 2.0
+shader_param/crackle_tex = ExtResource( 11 )
 
 [sub_resource type="ButtonGroup" id=6]
 
@@ -61,6 +68,7 @@ theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Background" type="TextureRect" parent="."]
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )

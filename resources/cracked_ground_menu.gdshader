@@ -3,9 +3,8 @@
 shader_type canvas_item;
 render_mode blend_mix;
 varying vec2 w_vertex;
-uniform float inv_cell_size;
-uniform mat4 view_to_local;
-uniform sampler2D crackle_tex;
+uniform sampler2D crackle_tex : hint_albedo;
+uniform float scale : hint_range(0.0, 100.0, 0.1);
 const float noise_scale_factor = 7.5;
 
 float random (in vec2 st) {
@@ -37,16 +36,12 @@ float noise (in vec2 st) {
 }
 
 void vertex() {
-    w_vertex = (view_to_local * WORLD_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
 }
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-	float dark_details = 1.0;
-	vec2 uv2 = w_vertex * inv_cell_size * 0.4;
-	float mask = mix(clamp(noise(uv2 * noise_scale_factor) * 2.5, 0.0, 1.0), 1.0, 0.5);
+	float mask = mix(clamp(noise(UV * scale * noise_scale_factor) * 2.5, 0.0, 1.0), 1.0, 0.5);
+	float dark_details = mix(texture(crackle_tex, fract(UV * scale)).r, 1.0, mask);
 	
-	if (dot(vec3(1), color.rgb) < 1.0 && color.a > 0.01)
-		dark_details = mix(texture(crackle_tex, fract(uv2)).r, 1.0, mask);
 	COLOR = vec4(color.rgb * dark_details, color.a);
 }

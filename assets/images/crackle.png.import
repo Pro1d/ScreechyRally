@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Asphalt027C_1K_AmbientOcclusion.png-026ad0f9e155c854628ab08ff289f3dd.stex"
+path="res://.import/crackle.png-c8155bd1effb38cc70948e726381967d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Asphalt027C_1K_AmbientOcclusion.png"
-dest_files=[ "res://.import/Asphalt027C_1K_AmbientOcclusion.png-026ad0f9e155c854628ab08ff289f3dd.stex" ]
+source_file="res://assets/images/crackle.png"
+dest_files=[ "res://.import/crackle.png-c8155bd1effb38cc70948e726381967d.stex" ]
 
 [params]
 
