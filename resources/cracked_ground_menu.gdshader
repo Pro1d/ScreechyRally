@@ -41,7 +41,10 @@ void vertex() {
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
 	float mask = mix(clamp(noise(UV * scale * noise_scale_factor) * 2.5, 0.0, 1.0), 1.0, 0.5);
-	float dark_details = mix(texture(crackle_tex, fract(UV * scale)).r, 1.0, mask);
+	float dark_details = 1.0;
+	
+	if (mask < 1.0)
+		dark_details = mix(texture(crackle_tex, fract(UV * scale)).r, 1.0, mask);
 	
 	COLOR = vec4(color.rgb * dark_details, color.a);
 }
